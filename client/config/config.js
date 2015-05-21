@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('poseidon')
+angular.module('epic')
 .config(function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/');
 

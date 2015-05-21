@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('poseidon')
+angular.module('epic')
 .factory('User', function($rootScope, $http, nodeUrl){
   function User(){
   }
