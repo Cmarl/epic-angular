@@ -1,16 +1,12 @@
 'use strict';
 
-angular.module('epic')
+angular.module('converger')
 .factory('User', function($rootScope, $http, nodeUrl){
   function User(){
   }
 
-  User.initialize = function(){
+  User.findOrCreate = function(){
     return $http.post(nodeUrl + '/users');
-  };
-
-  User.oauth = function(provider){
-    return $rootScope.afAuth.$authWithOAuthPopup(provider);
   };
 
   User.register = function(user){
@@ -23,6 +19,10 @@ angular.module('epic')
 
   User.logout = function(){
     return $rootScope.afAuth.$unauth();
+  };
+
+  User.oauth = function(provider){
+    return $rootScope.afAuth.$authWithOAuthPopup(provider);
   };
 
   return User;

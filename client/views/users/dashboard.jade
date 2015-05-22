@@ -1,0 +1,23 @@
+h3.text-center Dashboard
+.container
+  .row
+    .col-xs-4.col-xs-offset-2
+      .form-group
+        button.btn.btn-info.form-control(ng-click='linkSocial("Facebook")') Link Facebook
+      .form-group
+        button.btn.btn-warning.form-control(ng-click='linkSocial("Twitter")') Link Twitter
+    .col-xs-4
+      .form-group
+        button.btn.btn-danger.form-control(ng-click='linkSocial("Pinterest")') Link Pinterest
+      .form-group
+        button.btn.btn-success.form-control(ng-click='linkSocial("Google")') Link Google
+    .col-xs-8.col-xs-offset-2
+      .form-group
+        button.btn.btn-success.form-control(ng-click='logout()') Logout
+  .row
+    .col-xs-6
+      h3 Using Facebook as: {{myInfo.first_name}} {{myInfo.last_name}}
+      h3 Using Twitter as:
+    .col-xs-6
+      h3 Using Pinterest as:
+      h3 Using Google as:

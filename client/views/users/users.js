@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('epic')
+angular.module('converger')
 .controller('UsersCtrl', function($scope, $state, $window, User){
   $scope.name = $state.current.name;
 

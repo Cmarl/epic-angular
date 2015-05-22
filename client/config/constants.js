@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('epic')
-.constant('firebaseUrl', 'https://__________.firebaseio.com/')
+angular.module('converger')
+.constant('firebaseUrl', 'https://clyde-marl.firebaseio.com/')
 .constant('nodeUrl', 'http://localhost:8000');
