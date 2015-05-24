@@ -1,28 +1,38 @@
 'use strict';
 
-angular.module('converger')
-.factory('Facebook', function(ezfb, $rootScope){
+angular.module('convergence')
+.factory('Facebook', function(ezfb, $rootScope, $http){
   function Facebook(){
   }
 
-  Facebook.myInfo = function(){
+  Facebook.feed = function(){
+    // return ezfb.api('/me/permissions');
+    $http.defaults.headers.common.Authorization = 'Bearer ' + $rootScope.facebookCredentials.authResponse.accessToken;
+    return ezfb.api('https://graph.facebook.com/me/feed');
+  };
+
+  Facebook.userInfo = function(){
     return ezfb.api('/me');
   };
 
-  Facebook.status = function(){
-    ezfb.getLoginStatus(function(res){
-      $rootScope.loginStatus = res;
+  Facebook.photo = function(){
+    return ezfb.api('/me/picture');
+  };
+
+  Facebook.updateCredentials = function(){
+    ezfb.getLoginStatus(function(response){
+      $rootScope.facebookCredentials = response;
     });
   };
 
   Facebook.login = function(){
-    if($rootScope.loginStatus.status !== 'connected'){
-      return ezfb.login();
-    }
+    ezfb.login(function(){
+      Facebook.updateCredentials();
+    }, {scope: 'email,user_likes,user_friends,user_about_me,user_photos,'});
   };
 
   Facebook.logout = function(){
-    if($rootScope.loginStatus.status === 'connected'){
+    if($rootScope.facebookCredentials.status === 'connected'){
       return ezfb.logout();
     }
   };

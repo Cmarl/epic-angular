@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('converger')
+angular.module('convergence')
 .controller('UsersCtrl', function($scope, $state, $window, User){
   $scope.name = $state.current.name;
 

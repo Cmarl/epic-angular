@@ -3,21 +3,23 @@ h3.text-center Dashboard
   .row
     .col-xs-4.col-xs-offset-2
       .form-group
-        button.btn.btn-info.form-control(ng-click='linkSocial("Facebook")') Link Facebook
+        button.btn.btn-info.form-control(ng-click='addProvider("Facebook")') Link Facebook
+        button.btn.btn-success.form-control(ng-click='logout("Facebook")') Logout Facebook
       .form-group
-        button.btn.btn-warning.form-control(ng-click='linkSocial("Twitter")') Link Twitter
+        button.btn.btn-warning.form-control(ng-click='addProvider("Twitter")') Link Twitter
+        button.btn.btn-success.form-control(ng-click='logout("Twitter")') Logout Twitter
     .col-xs-4
       .form-group
-        button.btn.btn-danger.form-control(ng-click='linkSocial("Pinterest")') Link Pinterest
+        button.btn.btn-danger.form-control(ng-disabled='true' ng-click='addProvider("Pinterest")') Link Pinterest
       .form-group
-        button.btn.btn-success.form-control(ng-click='linkSocial("Google")') Link Google
-    .col-xs-8.col-xs-offset-2
-      .form-group
-        button.btn.btn-success.form-control(ng-click='logout()') Logout
+        button.btn.btn-success.form-control(ng-disabled='true' ng-click='addProvider("Google")') Link Google
   .row
     .col-xs-6
-      h3 Using Facebook as: {{myInfo.first_name}} {{myInfo.last_name}}
-      h3 Using Twitter as:
-    .col-xs-6
-      h3 Using Pinterest as:
-      h3 Using Google as:
+      h3 Facebook
+      img(ng-src='{{facebookPhoto}}')
+      h4 {{facebookUserInfo.first_name}} {{facebookUserInfo.last_name}}
+      h3 Twitter
+      img(ng-src='{{twitterUserInfo.avatar}}')
+      h4 {{twitterUserInfo.name}}
+      h4 {{twitterUserInfo.bio}}
+      h4 {{twitterUserInfo.location}}

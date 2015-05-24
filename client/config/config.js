@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('converger')
+angular.module('convergence')
 .config(function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/');
 

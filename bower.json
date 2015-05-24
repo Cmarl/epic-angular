@@ -1,7 +1,7 @@
 {
-  "name": "converger-angular",
+  "name": "convergence-angular",
   "version": "0.0.1",
-  "homepage": "https://github.com/cmarl/converger-angular",
+  "homepage": "https://github.com/cmarl/convergence-angular",
   "authors": [
     "Clyde Marl <marl.clyde@gmail.com>"
   ],
@@ -15,6 +15,7 @@
     "jquery": "~2.1.4",
     "bootstrap": "~3.3.4",
     "angular-ui-router": "~0.2.15",
-    "sweetalert": "~1.0.0"
+    "sweetalert": "~1.0.0",
+    "oauth-js": "~0.4.3"
   }
 }

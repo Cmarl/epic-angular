@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('converger')
+angular.module('convergence')
 .factory('User', function($rootScope, $http, nodeUrl){
   function User(){
   }

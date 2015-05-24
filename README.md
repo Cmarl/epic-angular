@@ -1,1 +1,1 @@
-# converger
+# convergence

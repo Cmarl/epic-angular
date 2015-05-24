@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('converger', ['firebase', 'ui.router', 'ezfb']);
+angular.module('convergence', ['firebase', 'ui.router', 'ezfb']);

@@ -1,7 +1,7 @@
 {
-  "name": "converger-angular",
+  "name": "convergence-angular",
   "version": "0.0.1",
-  "homepage": "https://github.com/cmarl/converger-angular",
+  "homepage": "https://github.com/cmarl/convergence-angular",
   "author": "Clyde Marl <marl.clyde@gmail.com>",
   "license": "BSD",
   "devDependencies": {

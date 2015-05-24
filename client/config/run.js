@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('converger')
+angular.module('convergence')
 .run(function($rootScope, $window, $firebaseAuth, firebaseUrl, ezfb){
   $rootScope.fbRoot = new $window.Firebase(firebaseUrl);
   $rootScope.afAuth = $firebaseAuth($rootScope.fbRoot);

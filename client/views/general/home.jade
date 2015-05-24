@@ -1,4 +1,8 @@
-h3.text-center HOME
+h3.text-center Feed
 .container
   .col-xs-8.col-xs-offset-2
-    
+    .container-fluid.tweet(ng-repeat='post in posts')
+      h3 {{post.user.screen_name}}
+      img.postUserImg.thumbnail(ng-src='{{post.user.profile_image_url}}')
+      h4 {{post.text}}
+      h5 Favorites: {{post.favorite_count}}

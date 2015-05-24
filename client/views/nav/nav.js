@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('converger')
-.controller('NavCtrl', function($rootScope, $scope, $state, $firebaseObject, $http, User, $window, Facebook){
+angular.module('convergence')
+.controller('NavCtrl', function($rootScope, $scope, $state, $http, User, $window, Facebook, Twitter){
   function getDisplayName(data){
     return data.password.email;
   }
@@ -25,7 +25,8 @@ angular.module('converger')
     $state.go('home');
   });
 
-  Facebook.status();
+  Facebook.updateCredentials();
+  $rootScope.twitterCredentials = $window.OAuth.create('twitter');
 
   $scope.logout = function(){
     User.logout();
