@@ -19,7 +19,7 @@ angular.module('convergence')
   // group all and sort by date
   // add to home page mix feed
   Facebook.feed = function(){
-    return ezfb.api('/me/feed?access_token=CAACEdEose0cBAIZCtrz2RXuZCaZBvcoHHZBr5ZA5lnYmu2IE958XMc7jfSZBNVxqglGYI78MEUyjLNR2tNdxmMjpuk3pd4Q2ZAgBZANBE3ZAkLFYDDqPWSwpyTluRJiZC5IIH5KsRZAnQm8ldRIpO6eg0b2I6uCEOYm8RIPAzeOL3iuW4DjlLDJQj4xZBDwrazVlgIMeYv2YlFsjOoUFAd5dEAxt');
+    return ezfb.api('/me/feed?access_token=CAACEdEose0cBAOT6OZAbxvBWgTdgQyr70wPVhegQcQgRy3APrix6zJxAFkn16kZAR9JqicnjwDc64TcORa3I6odQroX55gB4pkjrjH7Mvz0pyQlZBRR8XQQhkgQNIWQx5nURQ8NE755NGwZBPegCmJ64ylN8u4bqUN7iD1udbVTiywhKtl7acS05VR2vkss74kQZBNTYZAYtGoSxaZB0pbm');
   };
 
   Facebook.userInfo = function(){

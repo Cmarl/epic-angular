@@ -1,0 +1,21 @@
+.container
+  .row
+    .col-xs-12.col-md-8.col-md-offset-2
+      h3 Post HQ
+      .form-group
+        p.danger(ng-show='post.body.length > 140') Over Twitter limit, will trim to first 140 characters..
+        textarea.form-control(ng-model='post.body' placeholder='Type your Tweet/Facebook update here' rows='5')
+        .col-xs-3
+          label Facebook &nbsp;
+            input.checkbox(type='checkbox' ng-model='post.facebook')
+        .col-xs-3
+          label Twitter &nbsp;
+            input.checkbox(type='checkbox' ng-model='post.twitter')
+        .col-xs-3
+          label Google &nbsp;
+            input.checkbox(type='checkbox' ng-model='post.google')
+        .col-xs-3
+          label Pinterest &nbsp;
+            input.checkbox(type='checkbox' ng-model='post.pinterest')
+      .form-group
+        button.btn.btn-info.form-control(ng-click='send(post)') Post
