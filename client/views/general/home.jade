@@ -5,6 +5,8 @@
 .container.feed(ng-if='splitFeed')
   .row
     .col-xs-6
+      button.btn.btn-success.form-control(ng-click='updateTweets()') Refresh Tweets &nbsp;
+        i.fa.fa-spinner.fa-spin(ng-show='twLoading')
       .container-fluid.post(ng-repeat='post in twFeed')
         img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
         h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user') &nbsp; {{post.user.screen_name}}
@@ -33,7 +35,8 @@
               .row
                 .col-xs-6
                   h6.comment(ng-if='comment.user_likes') Likes: {{comment.like_count}}
-      button.btn.btn-success.form-control(ng-click='morePosts("facebook")') More
+      button.btn.btn-success.form-control(ng-click='morePosts("facebook")') More &nbsp;
+        i.fa.fa-spinner.fa-spin(ng-show='fbLoading')
 .container.feed(ng-if='mixedFeed')
   .row
     .col-xs-10.col-xs-offset-1

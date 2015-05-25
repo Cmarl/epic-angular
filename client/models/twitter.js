@@ -8,7 +8,7 @@ angular.module('convergence')
   }
 
   Twitter.feed = function(){
-    return $rootScope.twitterCredentials.get('https://api.twitter.com/1.1/statuses/home_timeline.json?count=50');
+    return $rootScope.twitterCredentials.get('https://api.twitter.com/1.1/statuses/home_timeline.json?count=100');
   };
 
   Twitter.userInfo = function(){

@@ -34,6 +34,15 @@ angular.module('convergence')
     });
   }
 
+  $scope.updateTweets = function(){
+    $scope.twLoading = true;
+    Twitter.feed()
+    .then(function(tFeed){
+      $scope.twLoading = false;
+      $scope.twFeed = tFeed;
+    });
+  };
+
   $scope.toggleFeedView = function(){
     $scope.mixedFeed = !$scope.mixedFeed;
     $scope.splitFeed = !$scope.splitFeed;
@@ -54,12 +63,14 @@ angular.module('convergence')
   $scope.morePosts = function(provider){
     switch(provider){
       case 'facebook':
+        $scope.fbLoading = true;
         Facebook.feed($scope.fbPaging.next)
         .then(function(fFeed){
           fFeed.data.forEach(function(post){
             $scope.fbFeed.push(post);
           });
           $scope.fbPaging = fFeed.paging;
+          $scope.fbLoading = false;
         });
         break;
     }
