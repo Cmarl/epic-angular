@@ -2,24 +2,26 @@ h3.text-center Dashboard
 .container
   .row
     .col-xs-4.col-xs-offset-2
-      .form-group
+      .form-group.linkedAcc#fb
         button.btn.btn-info.form-control(ng-click='addProvider("Facebook")') Link Facebook
+        h3 Facebook
+        img.thumbnail(ng-src='{{facebookPhoto}}')
+        h4 {{facebookUserInfo.first_name}} {{facebookUserInfo.last_name}}
         button.btn.btn-success.form-control(ng-click='logout("Facebook")') Logout Facebook
-      .form-group
-        button.btn.btn-warning.form-control(ng-click='addProvider("Twitter")') Link Twitter
-        button.btn.btn-success.form-control(ng-click='logout("Twitter")') Logout Twitter
+
     .col-xs-4
-      .form-group
-        button.btn.btn-danger.form-control(ng-disabled='true' ng-click='addProvider("Pinterest")') Link Pinterest
-      .form-group
-        button.btn.btn-success.form-control(ng-disabled='true' ng-click='addProvider("Google")') Link Google
+      .form-group.linkedAcc#tw
+        button.btn.btn-warning.form-control(ng-click='addProvider("Twitter")') Link Twitter
+        h3 Twitter
+        img.thumbnail(ng-src='{{twitterUserInfo.avatar}}')
+        h4 {{twitterUserInfo.name}}
+        h4 {{twitterUserInfo.bio}}
+        h4 {{twitterUserInfo.location}}
+        button.btn.btn-success.form-control(ng-click='logout("Twitter")') Logout Twitter
   .row
-    .col-xs-6
-      h3 Facebook
-      img(ng-src='{{facebookPhoto}}')
-      h4 {{facebookUserInfo.first_name}} {{facebookUserInfo.last_name}}
-      h3 Twitter
-      img(ng-src='{{twitterUserInfo.avatar}}')
-      h4 {{twitterUserInfo.name}}
-      h4 {{twitterUserInfo.bio}}
-      h4 {{twitterUserInfo.location}}
+    .col-xs-4.col-xs-offset-2
+      .form-group.linkedAcc
+        button.btn.btn-success.form-control(ng-disabled='true' ng-click='addProvider("Google")') Link Google
+    .col-xs-4
+      .form-group.linkedAcc
+        button.btn.btn-danger.form-control(ng-disabled='true' ng-click='addProvider("Pinterest")') Link Pinterest

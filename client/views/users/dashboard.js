@@ -17,6 +17,10 @@ angular.module('convergence')
     });
   }
 
+  // Facebook.profileFeed().then(function(response){
+  //   console.log(response);
+  // });
+
   $scope.addProvider = function(provider){
     switch(provider){
       case 'Facebook':
