@@ -2,8 +2,8 @@
 
 angular.module('convergence')
 .controller('HomeCtrl', function($scope, Facebook, Twitter){
-  $scope.mixedFeed = false;
-  $scope.splitFeed = true;
+  $scope.mixedFeed = true;
+  $scope.splitFeed = false;
 
   function mixFeeds(){
     $scope.mixFeed = [];
@@ -41,14 +41,19 @@ angular.module('convergence')
     if($scope.mixedFeed){mixFeeds(); }else{$scope.mixFeed = []; }
   };
 
-
-  Facebook.feed()
-  .then(function(fFeed){
-    $scope.fbFeed = fFeed.data;
-  });
+  if($scope.facebookCredentials){
+    Facebook.feed()
+    .then(function(fFeed){
+      if(fFeed){
+        $scope.fbFeed = fFeed.data;
+      }
+    });
+  }
 
   Twitter.feed()
   .then(function(tFeed){
-    $scope.twFeed = tFeed;
+    if(tFeed){
+      $scope.twFeed = tFeed;
+    }
   });
 });

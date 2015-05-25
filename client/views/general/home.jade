@@ -13,14 +13,14 @@
     .col-xs-6
       .container-fluid.post(ng-repeat='post in fbFeed')
         .row
-          .col-xs-6
+          .col-xs-12.col-md-6
             h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.likes') &nbsp; {{post.from.name}}
             h4(ng-if='post.message') {{post.message}}
             a(href='{{post.link}}' ng-if='post.link'): img.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
             h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
-          .col-xs-6
+          .col-xs-12.col-md-6
             h4(ng-if='post.comments.data') Comments:
-            .container(ng-repeat='comment in post.comments.data')
+            .container.commentArea(ng-repeat='comment in post.comments.data')
               h5.comment {{comment.from.name}}
               h6.comment On: {{comment.created_time | date:'MM-dd-yyyy'}}
               .row
@@ -44,7 +44,7 @@
           h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
         .col-xs-6
           h4(ng-if='post.comments.data') Comments:
-          .container(ng-repeat='comment in post.comments.data')
+          .container.commentArea(ng-repeat='comment in post.comments.data')
             h5.comment {{comment.from.name}}
             h6.comment On: {{comment.created_time | date:'MM-dd-yyyy'}}
             p.comment &nbsp; {{comment.message}}

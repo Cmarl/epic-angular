@@ -5,15 +5,17 @@ h3.text-center Dashboard
       .form-group.linkedAcc#fb
         button.btn.btn-info.form-control(ng-click='addProvider("Facebook")') Link Facebook
         h3 Facebook
-        img.thumbnail(ng-src='{{facebookPhoto}}')
+        img.thumbnail.profilePic(ng-src='{{facebookPhoto}}')
         h4 {{facebookUserInfo.first_name}} {{facebookUserInfo.last_name}}
+        h4 {{facebookUserInfo.email}}
+        h4 Birthday: {{facebookUserInfo.birthday}}
         button.btn.btn-success.form-control(ng-click='logout("Facebook")') Logout Facebook
 
     .col-xs-4
       .form-group.linkedAcc#tw
         button.btn.btn-warning.form-control(ng-click='addProvider("Twitter")') Link Twitter
         h3 Twitter
-        img.thumbnail(ng-src='{{twitterUserInfo.avatar}}')
+        img.thumbnail.profilePic(ng-src='{{twitterUserInfo.avatar}}')
         h4 {{twitterUserInfo.name}}
         h4 {{twitterUserInfo.bio}}
         h4 {{twitterUserInfo.location}}
