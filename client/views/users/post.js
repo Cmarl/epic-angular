@@ -6,5 +6,6 @@ angular.module('convergence')
 
   $scope.send = function(post){
     console.log(post);
+    $scope.post = {};
   };
 });
