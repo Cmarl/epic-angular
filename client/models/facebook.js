@@ -12,6 +12,10 @@ angular.module('convergence')
     }
   };
 
+  Facebook.friendList = function(){
+    return ezfb.api('/me/friends');
+  };
+
   Facebook.feed = function(){
     if($rootScope.facebookCredentials){
       return ezfb.api('/me/feed?access_token=' + $rootScope.facebookCredentials.authResponse.accessToken);

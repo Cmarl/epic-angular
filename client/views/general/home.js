@@ -2,8 +2,8 @@
 
 angular.module('convergence')
 .controller('HomeCtrl', function($scope, Facebook, Twitter){
-  $scope.mixedFeed = true;
-  $scope.splitFeed = false;
+  $scope.mixedFeed = false;
+  $scope.splitFeed = true;
 
   function mixFeeds(){
     $scope.mixFeed = [];

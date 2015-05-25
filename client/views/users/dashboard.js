@@ -5,6 +5,9 @@ angular.module('convergence')
   if($scope.facebookCredentials.status === 'connected'){
     Facebook.userInfo().then(function(response){
       $rootScope.facebookUserInfo = response;
+      Facebook.friendList().then(function(list){
+        $rootScope.facebookUserInfo.friendList = list;
+      });
     });
     Facebook.photo().then(function(photo){
       $rootScope.facebookPhoto = photo.data.url;
