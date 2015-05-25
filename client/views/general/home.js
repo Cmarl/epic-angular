@@ -46,9 +46,24 @@ angular.module('convergence')
     .then(function(fFeed){
       if(fFeed){
         $scope.fbFeed = fFeed.data;
+        $scope.fbPaging = fFeed.paging;
       }
     });
   }
+
+  $scope.morePosts = function(provider){
+    switch(provider){
+      case 'facebook':
+        Facebook.feed($scope.fbPaging.next)
+        .then(function(fFeed){
+          fFeed.data.forEach(function(post){
+            $scope.fbFeed.push(post);
+          });
+          $scope.fbPaging = fFeed.paging;
+        });
+        break;
+    }
+  };
 
   Twitter.feed()
   .then(function(tFeed){

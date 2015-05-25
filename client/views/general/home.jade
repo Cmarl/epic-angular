@@ -33,6 +33,7 @@
               .row
                 .col-xs-6
                   h6.comment(ng-if='comment.user_likes') Likes: {{comment.like_count}}
+      button.btn.btn-success.form-control(ng-click='morePosts("facebook")') More
 .container.feed(ng-if='mixedFeed')
   .row
     .col-xs-10.col-xs-offset-1

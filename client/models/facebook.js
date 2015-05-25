@@ -16,9 +16,11 @@ angular.module('convergence')
     return ezfb.api('/me/friends');
   };
 
-  Facebook.feed = function(){
-    if($rootScope.facebookCredentials){
+  Facebook.feed = function(page){
+    if($rootScope.facebookCredentials && !page){
       return ezfb.api('/me/feed?access_token=' + $rootScope.facebookCredentials.authResponse.accessToken);
+    }else if($rootScope.facebookCredentials && page){
+      return ezfb.api(page);
     }
   };
 
