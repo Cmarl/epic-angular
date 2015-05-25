@@ -18,7 +18,7 @@ angular.module('convergence')
   }
 
   $scope.setBackground = function(url){
-    $rootScope.userBackground = url;
+    $rootScope.userBackground = 'url("' + url + '")';
   };
 
   // Facebook.profileFeed().then(function(response){

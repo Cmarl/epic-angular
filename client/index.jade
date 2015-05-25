@@ -11,7 +11,7 @@ html(lang='en', ng-app='convergence')
     link(rel='stylesheet', href='/vendor/sweetalert/dist/sweetalert.css')
     link(rel='stylesheet', href=isProd ? '/index.min.css' : '/index.css')
     link(rel='shortcut icon', href='/favicon.ico')
-  body(ng-style="{'background-image':'url({{userBackground}})'}")
+  body
     div#fb-root
     include views/nav/nav
     .container-fluid
