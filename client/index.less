@@ -1,14 +1,14 @@
 // body{
-//   background-color: rgba(0, 0, 0, 0.68);
+//   background-image: url('/assets/background.jpg');
 // }
-
-.feed{
-  background-image: url('/assets/background.jpg');
-}
 
 .comment{
   max-width: 250px;
   margin: 1px;
+}
+
+#feedHeader, #dashHeader{
+  margin-bottom: 13px;
 }
 
 .feedToggle{
@@ -25,15 +25,31 @@
   color: #1041a9;
 }
 
-.tweet{
+.post{
+  background-image: url('/assets/mix.jpg');
+  background-size: cover;
   border-right: 2px solid #6b6b6b;
   border-bottom: 2px solid #6b6b6b;
+  border-top: 3px solid #aeaeae;
+  border-left: 1px solid #aeaeae;
   margin-right: 10px;
   margin-top: 10px;
+  border-radius: 5px;
+  border-bottom: 2px solid rgba(47, 47, 47, 0.88);
+  margin: 5px;
 }
 
-.fbpost{
-  border-bottom: 2px solid #6b6b6b;
+.mixPost{
+  padding-top: 5px;
+  background-image: url('/assets/mix.jpg');
+  background-size: cover;
+  border-right: 3px solid #6b6b6b;
+  border-bottom: 3px solid #6b6b6b;
+  border-top: 3px solid #aeaeae;
+  border-left: 3px solid #aeaeae;
+  margin-right: 10px;
+  margin-top: 10px;
+  border-radius: 7px;
 }
 
 .postUserImg{
@@ -45,11 +61,6 @@
 .postContent{
   width: 150px;
   height: 150px;
-}
-
-.post{
-  border-bottom: 2px solid rgba(47, 47, 47, 0.88);
-  margin: 5px;
 }
 
 .linkedAcc{

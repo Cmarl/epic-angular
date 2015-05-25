@@ -17,6 +17,10 @@ angular.module('convergence')
     });
   }
 
+  $scope.setBackground = function(url){
+    $rootScope.userBackground = url;
+  };
+
   // Facebook.profileFeed().then(function(response){
   //   console.log(response);
   // });

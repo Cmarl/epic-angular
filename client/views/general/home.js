@@ -8,13 +8,17 @@ angular.module('convergence')
   function mixFeeds(){
     $scope.mixFeed = [];
 
-    $scope.twFeed.forEach(function(post){
-      $scope.mixFeed.push(post);
-    });
+    if($scope.twFeed){
+      $scope.twFeed.forEach(function(post){
+        $scope.mixFeed.push(post);
+      });
+    }
 
-    $scope.fbFeed.forEach(function(post){
-      $scope.mixFeed.push(post);
-    });
+    if($scope.fbFeed){
+      $scope.fbFeed.forEach(function(post){
+        $scope.mixFeed.push(post);
+      });
+    }
 
     // refactorrrr
     $scope.mixFeed.sort(function(previous, current){
