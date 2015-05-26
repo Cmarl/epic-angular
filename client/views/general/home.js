@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('convergence')
-.controller('HomeCtrl', function($scope, Facebook, Twitter){
+.controller('HomeCtrl', function($scope, Facebook, Twitter, Instagram){
   $scope.facebookLoadFeed = function(){
     Facebook.feed()
     .then(function(fFeed){
@@ -22,9 +22,20 @@ angular.module('convergence')
       }
     });
   };
+
+  $scope.instagramLoadFeed = function(){
+    $scope.igLoading = true;
+    Instagram.feed()
+    .then(function(iFeed){
+      $scope.igLoading = false;
+      $scope.igFeed = iFeed;
+    });
+  };
+
   $scope.init = function(){
     $scope.facebookLoadFeed();
     $scope.twitterLoadFeed();
+    $scope.instagramLoadFeed();
     $scope.splitFeed = true;
   };
   $scope.init();

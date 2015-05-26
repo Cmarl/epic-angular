@@ -6,7 +6,7 @@ angular.module('convergence')
   }
 
   Instagram.feed = function(){
-    return $rootScope.instagramCredentials.get();
+    return $rootScope.instagramCredentials.get('https://api.instagram.com/v1/users/self/feed');
   };
 
   Instagram.userInfo = function(){

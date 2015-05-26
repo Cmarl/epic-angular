@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('convergence')
-.controller('NavCtrl', function($rootScope, $scope, $state, $http, User, $window, Facebook, Twitter){
+.controller('NavCtrl', function($rootScope, $scope, $state, $http, User, $window, Facebook){
   function getDisplayName(data){
     return data.password.email;
   }
@@ -27,6 +27,7 @@ angular.module('convergence')
 
   Facebook.updateCredentials();
   $rootScope.twitterCredentials = $window.OAuth.create('twitter');
+  $rootScope.instagramCredentials = $window.OAuth.create('instagram');
 
   $scope.logout = function(){
     User.logout();

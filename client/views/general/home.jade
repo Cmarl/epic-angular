@@ -5,7 +5,15 @@
       button.feedToggle.btn.btn-lg.form-control.btn-info(ng-click='toggleFeedView()' ng-show='mixedFeed') Split Feed
   .container.feed(ng-if='splitFeed')
     .row
-      .col-xs-6
+      .col-xs-4
+        .container-fluid.post(ng-repeat='post in igFeed.data')
+          img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
+          h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user') &nbsp; {{post.user.username}}
+          img.postContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}')
+          h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
+          h4(ng-if='post.caption.text') {{post.caption.text}}
+          h5(ng-if='post.created_time'): i.fa.fa-heart &nbsp; {{post.favorite_count}}
+      .col-xs-4
         button.btn.btn-success.form-control(ng-click='updateTweets()') Refresh Tweets &nbsp;
           i.fa.fa-spinner.fa-spin(ng-show='twLoading')
         .container-fluid.post(ng-repeat='post in twFeed')
@@ -14,7 +22,7 @@
           h5(ng-if='post.created_at') {{post.created_at | date:'MM-dd-yyyy'}}
           h4(ng-if='post.text') {{post.text}}
           h5(ng-if='post.created_at') Favorites: {{post.favorite_count}}
-      .col-xs-6
+      .col-xs-4
         .container-fluid.post(ng-repeat='post in fbFeed')
           .row
             .col-xs-12.col-md-6
