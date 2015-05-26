@@ -7,4 +7,5 @@ angular.module('convergence')
   ezfb.init({
     appId: '650188588414568'
   });
+  $window.OAuth.initialize('XX54xT683-X-BE306sZv_RDL_UI');
 });

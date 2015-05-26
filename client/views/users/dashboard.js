@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('convergence')
-.controller('DashCtrl', function($rootScope, $scope, Facebook, Twitter){
+.controller('DashCtrl', function($rootScope, $scope, Facebook, Twitter, Instagram){
   Twitter.login()
   .then(function(routes){
     routes.me()
@@ -27,6 +27,14 @@ angular.module('convergence')
     });
   });
 
+  Instagram.login()
+  .then(function(igResponse){
+    igResponse.me()
+    .then(function(user){
+      $rootScope.instagramUserInfo = user;
+    });
+  });
+
   $scope.addProvider = function(provider){
     switch(provider){
       case 'Facebook':
@@ -38,8 +46,8 @@ angular.module('convergence')
       case 'Pinterest':
         console.log('Pinterest');
         break;
-      case 'Google':
-        console.log('Google');
+      case 'Instagram':
+        Instagram.login();
         break;
     }
   };
@@ -64,8 +72,8 @@ angular.module('convergence')
         console.log('Pinterest');
         break;
 
-      case 'Google':
-        console.log('Google');
+      case 'Instagram':
+        console.log('Instagram');
         break;
     }
   };

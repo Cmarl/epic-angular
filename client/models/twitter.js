@@ -2,8 +2,6 @@
 
 angular.module('convergence')
 .factory('Twitter', function($rootScope, $window){
-  $window.OAuth.initialize('XX54xT683-X-BE306sZv_RDL_UI');
-
   function Twitter(){
   }
 
@@ -20,7 +18,7 @@ angular.module('convergence')
   };
 
   Twitter.logout = function(){
-    return $window.OAuth.logout();
+    return $window.OAuth.logout('twitter');
   };
 
   return Twitter;

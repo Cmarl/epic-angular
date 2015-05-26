@@ -18,7 +18,7 @@ angular.module('convergence')
   Facebook.feed = function(page){
     return ezfb.api(page || '/me/feed');
   };
-  // ?access_token=' + $rootScope.facebookCredentials.authResponse.accessToken
+
 
   Facebook.userInfo = function(){
     return ezfb.api('/me');
