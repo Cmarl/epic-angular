@@ -1,5 +1,5 @@
 h3.text-center Dashboard
-.container
+.container(ng-if='activeUser')
   .row
     .col-xs-4.col-xs-offset-2
       .form-group.linkedAcc#fb
@@ -17,10 +17,10 @@ h3.text-center Dashboard
         button.btn.btn-warning.form-control(ng-click='addProvider("Twitter")') Link Twitter
         h3 Twitter
         img.thumbnail.profilePic(ng-src='{{twitterUserInfo.avatar}}')
-        h4(ng-if='twitterUserInfo.name') {{twitterUserInfo.name}}
-        h4(ng-if='twitterUserInfo.bio') {{twitterUserInfo.bio}}
-        h4(ng-if='twitterUserInfo.location') {{twitterUserInfo.location}}
-        h4(ng-if='twitterUserInfo.raw.followers_count') Followers: {{twitterUserInfo.raw.followers_count}}
+        h4 {{twitterUserInfo.name}}
+        h4 {{twitterUserInfo.bio}}
+        h4 {{twitterUserInfo.location}}
+        h4 Followers: {{twitterUserInfo.raw.followers_count}}
         button.btn.btn-success.form-control(ng-click='logout("Twitter")') Logout Twitter
   .row
     .col-xs-4.col-xs-offset-2

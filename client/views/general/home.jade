@@ -1,63 +1,64 @@
-.row
-  .col-xs-4.col-xs-offset-4#feedHeader
-    button.feedToggle.btn.btn-lg.form-control.btn-info(ng-click='toggleFeedView()' ng-show='splitFeed') Mix Feeds
-    button.feedToggle.btn.btn-lg.form-control.btn-info(ng-click='toggleFeedView()' ng-show='mixedFeed') Split Feed
-.container.feed(ng-if='splitFeed')
+.container(ng-if='activeUser')
   .row
-    .col-xs-6
-      button.btn.btn-success.form-control(ng-click='updateTweets()') Refresh Tweets &nbsp;
-        i.fa.fa-spinner.fa-spin(ng-show='twLoading')
-      .container-fluid.post(ng-repeat='post in twFeed')
-        img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
-        h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user') &nbsp; {{post.user.screen_name}}
-        h5(ng-if='post.created_at') {{post.created_at | date:'MM-dd-yyyy'}}
-        h4(ng-if='post.text') {{post.text}}
-        h5(ng-if='post.created_at') Favorites: {{post.favorite_count}}
-    .col-xs-6
-      .container-fluid.post(ng-repeat='post in fbFeed')
-        .row
-          .col-xs-12.col-md-6
+    .col-xs-4.col-xs-offset-4#feedHeader
+      button.feedToggle.btn.btn-lg.form-control.btn-info(ng-click='toggleFeedView()' ng-show='splitFeed') Mix Feeds
+      button.feedToggle.btn.btn-lg.form-control.btn-info(ng-click='toggleFeedView()' ng-show='mixedFeed') Split Feed
+  .container.feed(ng-if='splitFeed')
+    .row
+      .col-xs-6
+        button.btn.btn-success.form-control(ng-click='updateTweets()') Refresh Tweets &nbsp;
+          i.fa.fa-spinner.fa-spin(ng-show='twLoading')
+        .container-fluid.post(ng-repeat='post in twFeed')
+          img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
+          h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user') &nbsp; {{post.user.screen_name}}
+          h5(ng-if='post.created_at') {{post.created_at | date:'MM-dd-yyyy'}}
+          h4(ng-if='post.text') {{post.text}}
+          h5(ng-if='post.created_at') Favorites: {{post.favorite_count}}
+      .col-xs-6
+        .container-fluid.post(ng-repeat='post in fbFeed')
+          .row
+            .col-xs-12.col-md-6
+              h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name') &nbsp; {{post.from.name}}
+              h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
+              h4(ng-if='post.message') {{post.message}}
+              h4(ng-if='post.place') At: {{post.place.name}}
+              h4(ng-if='post.story') {{post.story}}
+              a(href='{{post.link}}' ng-if='post.link'): img.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
+              h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
+            .col-xs-12.col-md-6
+              h4(ng-if='post.comments.data') Comments:
+              .container.commentArea(ng-repeat='comment in post.comments.data')
+                h5.comment {{comment.from.name}}
+                h6.comment On: {{comment.created_time | date:'MM-dd-yyyy'}}
+                .row
+                  .col-xs-6
+                    p.comment &nbsp; {{comment.message}}
+                .row
+                  .col-xs-6
+                    h6.comment(ng-if='comment.user_likes') Likes: {{comment.like_count}}
+        button.btn.btn-success.form-control(ng-click='facebookNextPosts()') More &nbsp;
+          i.fa.fa-spinner.fa-spin(ng-show='fbLoading')
+  .container.feed(ng-if='mixedFeed')
+    .row
+      .col-xs-10.col-xs-offset-1
+        .container-fluid.mixPost(ng-repeat='post in mixFeed')
+          .col-xs-6
+            img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
+            h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user') &nbsp; {{post.user.screen_name}}
             h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name') &nbsp; {{post.from.name}}
             h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
+            h5(ng-if='post.created_at') {{post.created_at | date:'MM-dd-yyyy'}}
+            h4(ng-if='post.text') {{post.text}}
+            h5(ng-if='post.favorite_count') Favorites: {{post.favorite_count}}
             h4(ng-if='post.message') {{post.message}}
             h4(ng-if='post.place') At: {{post.place.name}}
             h4(ng-if='post.story') {{post.story}}
             a(href='{{post.link}}' ng-if='post.link'): img.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
             h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
-          .col-xs-12.col-md-6
+          .col-xs-6
             h4(ng-if='post.comments.data') Comments:
             .container.commentArea(ng-repeat='comment in post.comments.data')
               h5.comment {{comment.from.name}}
               h6.comment On: {{comment.created_time | date:'MM-dd-yyyy'}}
-              .row
-                .col-xs-6
-                  p.comment &nbsp; {{comment.message}}
-              .row
-                .col-xs-6
-                  h6.comment(ng-if='comment.user_likes') Likes: {{comment.like_count}}
-      button.btn.btn-success.form-control(ng-click='morePosts("facebook")') More &nbsp;
-        i.fa.fa-spinner.fa-spin(ng-show='fbLoading')
-.container.feed(ng-if='mixedFeed')
-  .row
-    .col-xs-10.col-xs-offset-1
-      .container-fluid.mixPost(ng-repeat='post in mixFeed')
-        .col-xs-6
-          img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
-          h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user') &nbsp; {{post.user.screen_name}}
-          h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name') &nbsp; {{post.from.name}}
-          h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
-          h5(ng-if='post.created_at') {{post.created_at | date:'MM-dd-yyyy'}}
-          h4(ng-if='post.text') {{post.text}}
-          h5(ng-if='post.favorite_count') Favorites: {{post.favorite_count}}
-          h4(ng-if='post.message') {{post.message}}
-          h4(ng-if='post.place') At: {{post.place.name}}
-          h4(ng-if='post.story') {{post.story}}
-          a(href='{{post.link}}' ng-if='post.link'): img.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
-          h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
-        .col-xs-6
-          h4(ng-if='post.comments.data') Comments:
-          .container.commentArea(ng-repeat='comment in post.comments.data')
-            h5.comment {{comment.from.name}}
-            h6.comment On: {{comment.created_time | date:'MM-dd-yyyy'}}
-            p.comment &nbsp; {{comment.message}}
-              h6.comment(ng-if='comment.user_likes') Likes: {{comment.like_count}}
+              p.comment &nbsp; {{comment.message}}
+                h6.comment(ng-if='comment.user_likes') Likes: {{comment.like_count}}
