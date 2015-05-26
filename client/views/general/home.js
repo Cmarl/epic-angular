@@ -53,6 +53,11 @@ angular.module('convergence')
         $scope.mixFeed.push(post);
       });
     }
+    if($scope.igFeed){
+      $scope.igFeed.data.forEach(function(post){
+        $scope.mixFeed.push(post);
+      });
+    }
     // refactorrrr sorting facebook and twitter posts into single list ordered by date
     $scope.mixFeed.sort(function(previous, current){
       if(Date.parse(previous.created_at) && Date.parse(current.created_at)){
