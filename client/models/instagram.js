@@ -5,8 +5,20 @@ angular.module('convergence')
   function Instagram(){
   }
 
-  Instagram.feed = function(){
-    return $rootScope.instagramCredentials.get('https://api.instagram.com/v1/users/self/feed');
+  Instagram.feed = function(url){
+    if(url){
+      return $rootScope.instagramCredentials.get(url);
+    }else if(!url){
+      return $rootScope.instagramCredentials.get('https://api.instagram.com/v1/users/self/feed');
+    }
+  };
+
+  Instagram.unlike = function(id){
+    return $rootScope.instagramCredentials.post('https://api.instagram.com/v1/media/');
+  };
+
+  Instagram.like = function(id){
+    return $rootScope.instagramCredentials.delete('https://api.instagram.com/v1/media/');
   };
 
   Instagram.userInfo = function(){

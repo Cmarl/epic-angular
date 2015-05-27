@@ -1,4 +1,5 @@
 'use strict';
+/* eslint camelcase:0 */
 
 angular.module('convergence')
 .controller('HomeCtrl', function($scope, Facebook, Twitter, Instagram){
@@ -36,6 +37,7 @@ angular.module('convergence')
     $scope.facebookLoadFeed();
     $scope.twitterLoadFeed();
     $scope.instagramLoadFeed();
+    $scope.splitFeed = false;
     $scope.splitFeed = true;
   };
   $scope.init();
@@ -58,24 +60,32 @@ angular.module('convergence')
         $scope.mixFeed.push(post);
       });
     }
-    // refactorrrr sorting facebook and twitter posts into single list ordered by date
-    $scope.mixFeed.sort(function(previous, current){
-      if(Date.parse(previous.created_at) && Date.parse(current.created_at)){
-        return Date.parse(previous.created_at) > Date.parse(current.created_at);
-      }else if(Date.parse(previous.created_time) && Date.parse(current.created_time)){
-        return Date.parse(previous.created_time) > Date.parse(current.created_time);
-      }else if(Date.parse(previous.created_time) && Date.parse(current.created_at)){
-        return Date.parse(previous.created_time) > Date.parse(current.created_at);
-      }else if(Date.parse(previous.created_at) && Date.parse(current.created_time)){
-        return Date.parse(previous.created_at) > Date.parse(current.created_time);
-      }
-    });
+
+    // randomize order of mixFeed array elements
+    for(var i = $scope.mixFeed.length; i > 0; i--){
+      var randI = Math.floor(Math.random() * (i + 1));
+      var hold = $scope.mixFeed[i];
+      $scope.mixFeed[i] = $scope.mixFeed[randI];
+      $scope.mixFeed[randI] = hold;
+    }
   }
 
   $scope.toggleFeedView = function(){
     $scope.mixedFeed = !$scope.mixedFeed;
     $scope.splitFeed = !$scope.splitFeed;
     if($scope.mixedFeed){mixFeeds(); }else{$scope.mixFeed = []; }
+  };
+
+  $scope.toggleIGLike = function(post, index){
+    if(post.user_has_liked){
+      console.log('un-like');
+      $scope.igFeed.data[index].user_has_liked = false;
+      Instagram.unlike();
+    }else{
+      console.log('like');
+      $scope.igFeed.data[index].user_has_liked = true;
+      Instagram.like();
+    }
   };
 
   $scope.facebookNextPosts = function(){
@@ -87,6 +97,18 @@ angular.module('convergence')
       });
       $scope.fbPaging = fFeed.paging;
       $scope.fbLoading = false;
+    });
+  };
+
+  $scope.instagramNextPosts = function(){
+    $scope.igLoading = true;
+    Instagram.feed($scope.igFeed.pagination.next_url)
+    .then(function(iFeed){
+      $scope.igFeed.pagination = iFeed.pagination;
+      iFeed.data.forEach(function(post){
+        $scope.igFeed.data.push(post);
+      });
+      $scope.igLoading = false;
     });
   };
 });

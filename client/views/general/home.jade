@@ -6,13 +6,17 @@
   .container.feed(ng-if='splitFeed')
     .row
       .col-xs-4
-        .container-fluid.post(ng-repeat='post in igFeed.data')
+        .container-fluid.post(ng-repeat='post in igFeed.data track by $index')
           img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
           h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user') &nbsp; {{post.user.username}}
-          img.postContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}')
-          h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
+          img.postContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}' ng-dblclick='toggleIGLike(post, $index)')
+          p(ng-if='post.tags') {{post.tags.join(', ')}}
+          //- h5(ng-if='post.created_time') {{post.created_time| date:'MM-dd-yyyy'}}
           h4(ng-if='post.caption.text') {{post.caption.text}}
-          h5(ng-if='post.created_time'): i.fa.fa-heart &nbsp; {{post.favorite_count}}
+          h5(ng-if='post.user_has_liked'): i.fa.fa-heart &nbsp; {{post.likes.count}}
+          h5(ng-hide='post.user_has_liked'): i.fa.fa-heart-o &nbsp; {{post.likes.count}}
+        button.btn.btn-success.form-control(ng-click='instagramNextPosts()') More &nbsp;
+          i.fa.fa-spinner.fa-spin(ng-show='igLoading')
       .col-xs-4
         button.btn.btn-success.form-control(ng-click='updateTweets()') Refresh Tweets &nbsp;
           i.fa.fa-spinner.fa-spin(ng-show='twLoading')
@@ -63,12 +67,12 @@
             h4(ng-if='post.story') {{post.story}}
             a(href='{{post.link}}' ng-if='post.link'): img.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
             h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
-                      img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
-                      h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user') &nbsp; {{post.user.username}}
-                      img.postContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}')
-                      h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
-                      h4(ng-if='post.caption.text') {{post.caption.text}}
-                      h5(ng-if='post.created_time'): i.fa.fa-heart &nbsp; {{post.favorite_count}}
+            img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
+            h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user') &nbsp; {{post.user.username}}
+            img.postContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}')
+            h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
+            h4(ng-if='post.caption.text') {{post.caption.text}}
+            h5(ng-if='post.likes'): i.fa.fa-heart &nbsp; {{post.likes.count}}
           .col-xs-6
             h4(ng-if='post.comments.data') Comments:
             .container.commentArea(ng-repeat='comment in post.comments.data')
