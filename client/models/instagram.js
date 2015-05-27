@@ -14,11 +14,11 @@ angular.module('convergence')
   };
 
   Instagram.unlike = function(id){
-    return $rootScope.instagramCredentials.post('https://api.instagram.com/v1/media/');
+    return $rootScope.instagramCredentials.del('https://api.instagram.com/v1/media/' + id + '/likes');
   };
 
   Instagram.like = function(id){
-    return $rootScope.instagramCredentials.delete('https://api.instagram.com/v1/media/');
+    return $rootScope.instagramCredentials.post('https://api.instagram.com/v1/media/' + id + '/likes');
   };
 
   Instagram.userInfo = function(){
@@ -26,7 +26,7 @@ angular.module('convergence')
   };
 
   Instagram.login = function(){
-    return $window.OAuth.popup('instagram', {cache: true});
+    return $window.OAuth.popup('instagram');
   };
 
   Instagram.logout = function(){

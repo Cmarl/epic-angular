@@ -80,11 +80,11 @@ angular.module('convergence')
     if(post.user_has_liked){
       console.log('un-like');
       $scope.igFeed.data[index].user_has_liked = false;
-      Instagram.unlike();
+      Instagram.unlike(post.id);
     }else{
       console.log('like');
       $scope.igFeed.data[index].user_has_liked = true;
-      Instagram.like();
+      Instagram.like(post.id);
     }
   };
 
