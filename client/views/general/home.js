@@ -4,33 +4,42 @@
 angular.module('convergence')
 .controller('HomeCtrl', function($scope, Facebook, Twitter, Instagram){
   $scope.facebookLoadFeed = function(){
-    Facebook.feed()
-    .then(function(fFeed){
-      if(fFeed){
-        $scope.fbFeed = fFeed.data;
-        $scope.fbPaging = fFeed.paging;
-      }
-    });
+    if($scope.facebookCredentials){
+      Facebook.feed()
+      .then(function(fFeed){
+        if(fFeed){
+          $scope.fbFeed = fFeed.data;
+          $scope.fbPaging = fFeed.paging;
+          $scope.$apply();
+        }
+      });
+    }
   };
 
   $scope.twitterLoadFeed = function(){
-    $scope.twLoading = true;
-    Twitter.feed()
-    .then(function(tFeed){
-      if(tFeed){
-        $scope.twLoading = false;
-        $scope.twFeed = tFeed;
-      }
-    });
+    if($scope.twitterCredentials){
+      $scope.twLoading = true;
+      Twitter.feed()
+      .then(function(tFeed){
+        if(tFeed){
+          $scope.twLoading = false;
+          $scope.twFeed = tFeed;
+          $scope.$apply();
+        }
+      });
+    }
   };
 
   $scope.instagramLoadFeed = function(){
-    $scope.igLoading = true;
-    Instagram.feed()
-    .then(function(iFeed){
-      $scope.igLoading = false;
-      $scope.igFeed = iFeed;
-    });
+    if($scope.instagramCredentials){
+      $scope.igLoading = true;
+      Instagram.feed()
+      .then(function(iFeed){
+        $scope.igLoading = false;
+        $scope.igFeed = iFeed;
+        $scope.$apply();
+      });
+    }
   };
 
   $scope.init = function(){
@@ -39,6 +48,7 @@ angular.module('convergence')
     $scope.instagramLoadFeed();
     $scope.splitFeed = false;
     $scope.splitFeed = true;
+    $scope.$apply();
   };
   $scope.init();
 
