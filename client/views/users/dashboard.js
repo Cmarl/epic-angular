@@ -49,6 +49,7 @@ angular.module('convergence')
         Twitter.login()
         .then(function(response){
           $rootScope.twitterCredentials = response;
+          $scope.$apply();
         });
         break;
       case 'Pinterest':
@@ -61,6 +62,7 @@ angular.module('convergence')
           response.me()
           .then(function(user){
             $rootScope.instagramUserInfo = user;
+            $scope.$apply();
           });
         });
         break;

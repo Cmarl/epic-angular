@@ -1,8 +1,8 @@
 .container-fluid(ng-if='activeUser')
   .row
     .col-xs-4.col-xs-offset-4#feedHeader
-      button.feedToggle.btn.btn-lg.form-control.btn-info(ng-click='toggleFeedView()' ng-show='splitFeed') Mix Feeds
-      button.feedToggle.btn.btn-lg.form-control.btn-info(ng-click='toggleFeedView()' ng-show='mixedFeed') Split Feed
+      button.feedToggle.btn.btn-lg.form-control.btn-warning(ng-click='toggleFeedView()' ng-show='splitFeed') Mix Feeds
+      button.feedToggle.btn.btn-lg.form-control.btn-(ng-click='toggleFeedView()' ng-show='mixedFeed') Split Feed
   .container-fluid.feed(ng-if='splitFeed')
     .row
       .col-xs-4
@@ -12,8 +12,8 @@
             .col-xs-3
               img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
             .col-xs-6
-              h4: em &nbsp; {{post.user.username}}
-          img.postContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}' ng-dblclick='toggleIGLike(post, $index)')
+              h3: em &nbsp; {{post.user.username}}
+          img.img-responsive.postContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}' ng-dblclick='toggleIGLike(post, $index)')
           p(ng-if='post.tags') {{post.tags.join(', ')}}
           //- h5(ng-if='post.created_time') {{post.created_time| date:'MM-dd-yyyy'}}
           h4(ng-if='post.caption.text') {{post.caption.text}}
@@ -25,10 +25,10 @@
         .container-fluid.post(ng-repeat='post in twFeed')
           h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user')
           .row
-            .col-xs-2
+            .col-xs-12.col-md-2
               img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
-            .col-xs-6
-              h4: em &nbsp; {{post.user.screen_name}}
+            .col-xs-12.col-md-6
+              h3: em &nbsp; {{post.user.screen_name}}
           h5(ng-if='post.created_at') {{post.created_at | date:'MM-dd-yyyy'}}
           h4(ng-if='post.text') {{post.text}}
           h5(ng-if='post.created_at') Favorites: {{post.favorite_count}}
@@ -39,12 +39,12 @@
           .row
             .col-xs-12
               h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name')
-              h4 {{post.from.name}}
+              h3 {{post.from.name}}
               h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
               h4(ng-if='post.message') {{post.message}}
               h4(ng-if='post.place') At: {{post.place.name}}
               h4(ng-if='post.story') {{post.story}}
-              a(href='{{post.link}}' ng-if='post.link'): img.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
+              a(href='{{post.link}}' ng-if='post.link'): img.img-responsive.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
               h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
               h4(ng-if='post.comments.data') Comments: {{post.comments.data.length}}
         button.btn.btn-success.form-control(ng-click='facebookNextPosts()') More &nbsp;
@@ -61,8 +61,8 @@
             img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
             img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
           .col-xs-6
-            h4(ng-if='post.user.screen_name') &nbsp; {{post.user.screen_name}}
-            h4(ng-if='post.user.username') &nbsp; {{post.user.username}}
+            h3(ng-if='post.user.screen_name') &nbsp; {{post.user.screen_name}}
+            h3(ng-if='post.user.username') &nbsp; {{post.user.username}}
             h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
             h5(ng-if='post.created_at') {{post.created_at | date:'MM-dd-yyyy'}}
             h4(ng-if='post.text') {{post.text}}
