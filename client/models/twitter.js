@@ -5,6 +5,10 @@ angular.module('convergence')
   function Twitter(){
   }
 
+  Twitter.getPost = function(id){
+    return $rootScope.twitterCredentials.get('https://api.twitter.com/1.1/statuses/show.json?id=' + id);
+  };
+
   Twitter.feed = function(){
     return $rootScope.twitterCredentials.get('https://api.twitter.com/1.1/statuses/home_timeline.json?count=100');
   };

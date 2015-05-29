@@ -1,7 +1,7 @@
 h3.text-center Dashboard
 .container(ng-if='activeUser')
   .row
-    .col-xs-4
+    .col-md-4.col-xs-12
       .form-group.linkedAcc#fb
         button.btn.btn-success.form-control(ng-click='addProvider("Facebook")') Link Facebook
         h3(ng-if='facebookPhoto') Facebook
@@ -12,7 +12,7 @@ h3.text-center Dashboard
         h4(ng-if='facebookUserInfo.friendList.summary.total_count') Friends: {{facebookUserInfo.friendList.summary.total_count}}
         button.btn.btn-danger.form-control(ng-if='facebookPhoto' ng-click='logout("Facebook")') Logout Facebook
 
-    .col-xs-4
+    .col-md-4.col-xs-12
       .form-group.linkedAcc#tw
         button.btn.btn-success.form-control(ng-click='addProvider("Twitter")') Link Twitter
         h3 Twitter
@@ -22,7 +22,7 @@ h3.text-center Dashboard
         h4 {{twitterUserInfo.location}}
         h4 Followers: {{twitterUserInfo.raw.followers_count}}
         button.btn.btn-danger.form-control(ng-click='logout("Twitter")') Logout Twitter
-    .col-xs-4
+    .col-md-4.col-xs-12
       .form-group.linkedAcc#tw
         button.btn.btn-success.form-control(ng-click='addProvider("Instagram")') Link Instagram
         h3 Instagram

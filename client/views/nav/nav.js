@@ -12,7 +12,7 @@ angular.module('convergence')
       $http.defaults.headers.common.Authorization = 'Bearer ' + data.token;
       User.findOrCreate()
       .then(function(){
-        $state.go('home');
+        $state.go('dashboard');
       })
       .catch(function(){
         $window.swal({title: 'User Creation Error', text: 'Woops! We had a problem, Please try again.', type: 'error'});

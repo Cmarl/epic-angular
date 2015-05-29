@@ -13,6 +13,10 @@ angular.module('convergence')
     }
   };
 
+  Instagram.getPost = function(id){
+    return $rootScope.instagramCredentials.get('https://api.instagram.com/v1/media/' + id);
+  };
+
   Instagram.unlike = function(id){
     return $rootScope.instagramCredentials.del('https://api.instagram.com/v1/media/' + id + '/likes');
   };

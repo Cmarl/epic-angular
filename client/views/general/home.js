@@ -2,7 +2,7 @@
 /* eslint camelcase:0 */
 
 angular.module('convergence')
-.controller('HomeCtrl', function($state, $scope, Facebook, Twitter, Instagram){
+.controller('HomeCtrl', function($rootScope, $state, $scope, Facebook, Twitter, Instagram){
   $scope.facebookLoadFeed = function(){
     if($scope.facebookCredentials){
       Facebook.feed()
@@ -48,7 +48,6 @@ angular.module('convergence')
     $scope.instagramLoadFeed();
     $scope.splitFeed = false;
     $scope.splitFeed = true;
-    $scope.$apply();
   };
   $scope.init();
 
@@ -82,9 +81,10 @@ angular.module('convergence')
   $scope.viewPost = function(post){
     console.log(post);
     if(post.from){
+      $rootScope.fbPost = post;
       $state.go('view', {postId: post.object_id ? post.object_id : post.id, provider: 'facebook'});
     }else if(post.lang){
-      $state.go('view', {postId: post.id, provider: 'twitter'});
+      $state.go('view', {postId: post.id_str, provider: 'twitter'});
     }else if(post.filter){
       $state.go('view', {postId: post.id, provider: 'instagram'});
     }
@@ -117,6 +117,7 @@ angular.module('convergence')
       });
       $scope.fbPaging = fFeed.paging;
       $scope.fbLoading = false;
+      $scope.$apply();
     });
   };
 
@@ -127,6 +128,7 @@ angular.module('convergence')
       $scope.igFeed.pagination = iFeed.pagination;
       iFeed.data.forEach(function(post){
         $scope.igFeed.data.push(post);
+        $scope.$apply();
       });
       $scope.igLoading = false;
     });

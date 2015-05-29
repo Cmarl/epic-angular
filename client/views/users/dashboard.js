@@ -29,9 +29,10 @@ angular.module('convergence')
     });
   }
 
-  if($rootScope.instagramCredentials){
+  if(!$rootScope.instagramCredentials){
     Instagram.login()
     .then(function(igResponse){
+      $rootScope.instagramCredentials = igResponse;
       igResponse.me()
       .then(function(user){
         $rootScope.instagramUserInfo = user;
