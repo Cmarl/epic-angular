@@ -53,7 +53,7 @@
               h4(ng-if='post.message') {{post.message}}
               h4(ng-if='post.place') At: {{post.place.name}}
               h4(ng-if='post.story') {{post.story}}
-              a(href='{{post.link}}' ng-if='post.link'): img.img-responsive.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
+              img.img-responsive.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
               h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
               h4(ng-if='post.comments.data') Comments: {{post.comments.data.length}}
         button.btn.btn-success.form-control(ng-click='facebookNextPosts()') More &nbsp;
@@ -82,7 +82,7 @@
             h4(ng-if='post.message') {{post.message}}
             h4(ng-if='post.place') At: {{post.place.name}}
             h4(ng-if='post.story') {{post.story}}
-            a(href='{{post.link}}' ng-if='post.link'): img.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
+            img.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
             h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
             img.postContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}')
             h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}

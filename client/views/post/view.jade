@@ -1,27 +1,37 @@
-.col-xs-12
-  .col-xs-4
-    h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user') &nbsp; {{post.user.screen_name}}
-    h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name') &nbsp; {{post.from.name}}
-    h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user') &nbsp; {{post.user.username}}
-  .col-xs-1.col-xs-offset-7
-    h4: i.fa.fa-eye(ng-click='viewPost(post)')
-.col-xs-2
-  img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
-  img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
-.col-xs-8
-  h3(ng-if='post.user.screen_name') &nbsp; {{post.user.screen_name}}
-  h3(ng-if='post.user.username') &nbsp; {{post.user.username}}
-  h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
-  h5(ng-if='post.created_at') {{post.created_at | date:'MM-dd-yyyy'}}
-  h4(ng-if='post.text') {{post.text}}
-  h5(ng-if='post.favorite_count') Favorites: {{post.favorite_count}}
-  h4(ng-if='post.message') {{post.message}}
-  h4(ng-if='post.place') At: {{post.place.name}}
-  h4(ng-if='post.story') {{post.story}}
-  a(href='{{post.link}}' ng-if='post.link'): img.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
-  h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
-  img.postContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}')
-  h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
-  h4(ng-if='post.caption.text') {{post.caption.text}}
-  h5(ng-if='post.likes'): i.fa.fa-heart &nbsp; {{post.likes.count}}
-  h4(ng-if='post.comments.data') Comments: {{post.comments.data.length}}
+.row
+  .col-xs-10.col-xs-offset-1
+    .container.post
+      .col-xs-8
+        h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user') &nbsp; {{post.user.screen_name}}
+        h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name') &nbsp; {{post.from.name}}
+        h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user') &nbsp; {{post.user.username}}
+
+        img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
+        img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
+        h3(ng-if='post.user.screen_name') &nbsp; {{post.user.screen_name}}
+        h3(ng-if='post.user.username') &nbsp; {{post.user.username}}
+
+        h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
+        h5(ng-if='post.created_at') {{post.created_at | date:'MM-dd-yyyy'}}
+
+        h4(ng-if='post.text') {{post.text}}
+        h4(ng-if='post.message') {{post.message}}
+        h5(ng-if='post.favorite_count') Favorites: {{post.favorite_count}}
+        h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
+        h4(ng-if='post.place') At: {{post.place.name}}
+        h4(ng-if='post.story') {{post.story}}
+
+        a(href='{{post.link}}' ng-if='post.link'): img.postShowImg.thumbnail(ng-show='post.picture' ng-src='{{post.images[0].source}}')
+        img.showPostImg.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}')
+
+        h4(ng-if='post.caption.text') {{post.caption.text}}
+        h5(ng-if='post.likes') Likes: &nbsp;
+          span(ng-repeat='person in post.likes.data') {{person.name}} &nbsp;
+      .col-xs-4
+        h4(ng-if='post.comments.data') Comments: {{post.comments.data.length}}
+        .container(ng-repeat='comment in post.comments.data')
+          h4 {{comment.from.name}}
+          h5 {{comment.message}}
+          h5 On: {{comment.created_time | date:'MM-dd-yyyy-h-s'}}
+          h5 likes: {{comment.like_count}}
+          

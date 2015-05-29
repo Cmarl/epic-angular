@@ -5,6 +5,10 @@ angular.module('convergence')
   function Facebook(){
   }
 
+  Facebook.getPost = function(id){
+    return ezfb.api('https://graph.facebook.com/' + id);
+  };
+
   Facebook.profleFeed = function(){
     if($rootScope.facebookCredentials){
       return ezfb.api('https://graph.facebook.com/me/feed');

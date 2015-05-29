@@ -82,7 +82,7 @@ angular.module('convergence')
   $scope.viewPost = function(post){
     console.log(post);
     if(post.from){
-      $state.go('view', {postId: post.object_id, provider: 'facebook'});
+      $state.go('view', {postId: post.object_id ? post.object_id : post.id, provider: 'facebook'});
     }else if(post.lang){
       $state.go('view', {postId: post.id, provider: 'twitter'});
     }else if(post.filter){
