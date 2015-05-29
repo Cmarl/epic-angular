@@ -2,7 +2,7 @@
 /* eslint camelcase:0 */
 
 angular.module('convergence')
-.controller('HomeCtrl', function($scope, Facebook, Twitter, Instagram){
+.controller('HomeCtrl', function($state, $scope, Facebook, Twitter, Instagram){
   $scope.facebookLoadFeed = function(){
     if($scope.facebookCredentials){
       Facebook.feed()
@@ -52,7 +52,6 @@ angular.module('convergence')
   };
   $scope.init();
 
-
   function mixFeeds(){
     $scope.mixFeed = [];
     if($scope.twFeed){
@@ -79,6 +78,17 @@ angular.module('convergence')
       $scope.mixFeed[randI] = hold;
     }
   }
+
+  $scope.viewPost = function(post){
+    console.log(post);
+    if(post.from){
+      $state.go('view', {postId: post.object_id, provider: 'facebook'});
+    }else if(post.lang){
+      $state.go('view', {postId: post.id, provider: 'twitter'});
+    }else if(post.filter){
+      $state.go('view', {postId: post.id, provider: 'instagram'});
+    }
+  };
 
   $scope.toggleFeedView = function(){
     $scope.mixedFeed = !$scope.mixedFeed;

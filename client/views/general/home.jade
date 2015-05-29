@@ -7,7 +7,10 @@
     .row
       .col-xs-4
         .container-fluid.post(ng-repeat='post in igFeed.data track by $index')
-          h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user')
+          .col-xs-1
+            h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user')
+          .col-xs-1.col-xs-offset-10
+            h4: i.fa.fa-eye(ng-click='viewPost(post)')
           .row
             .col-xs-3
               img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
@@ -23,7 +26,10 @@
           i.fa.fa-spinner.fa-spin(ng-show='igLoading')
       .col-xs-4
         .container-fluid.post(ng-repeat='post in twFeed')
-          h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user')
+          .col-xs-1
+            h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user')
+          .col-xs-1.col-xs-offset-10
+            h4: i.fa.fa-eye(ng-click='viewPost(post)')
           .row
             .col-xs-12.col-md-2
               img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
@@ -38,7 +44,10 @@
         .container-fluid.post(ng-repeat='post in fbFeed')
           .row
             .col-xs-12
-              h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name')
+              .col-xs-1
+                h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name')
+              .col-xs-1.col-xs-offset-10
+                h4: i.fa.fa-eye(ng-click='viewPost(post)')
               h3 {{post.from.name}}
               h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
               h4(ng-if='post.message') {{post.message}}
@@ -54,13 +63,16 @@
       .col-xs-10.col-xs-offset-1
         .container-fluid.mixPost(ng-repeat='post in mixFeed')
           .col-xs-12
-            h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user') &nbsp; {{post.user.screen_name}}
-            h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name') &nbsp; {{post.from.name}}
-            h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user') &nbsp; {{post.user.username}}
+            .col-xs-4
+              h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user') &nbsp; {{post.user.screen_name}}
+              h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name') &nbsp; {{post.from.name}}
+              h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user') &nbsp; {{post.user.username}}
+            .col-xs-1.col-xs-offset-7
+              h4: i.fa.fa-eye(ng-click='viewPost(post)')
           .col-xs-2
             img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
             img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
-          .col-xs-6
+          .col-xs-8
             h3(ng-if='post.user.screen_name') &nbsp; {{post.user.screen_name}}
             h3(ng-if='post.user.username') &nbsp; {{post.user.username}}
             h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
