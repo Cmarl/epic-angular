@@ -69,7 +69,6 @@ angular.module('convergence')
       });
     }
 
-    // randomize order of mixFeed array elements
     for(var i = $scope.mixFeed.length; i > 0; i--){
       var randI = Math.floor(Math.random() * (i + 1));
       var hold = $scope.mixFeed[i];

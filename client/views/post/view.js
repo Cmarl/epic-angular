@@ -37,7 +37,6 @@ angular.module('convergence')
 
   $scope.savePost = function(post){
     console.log(post);
-    post.userId = $rootScope.activeUser.token;
     if(post.from){
       Facebook.savePost(post);
     }else if(post.user.screen_name){

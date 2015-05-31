@@ -5,6 +5,10 @@ angular.module('convergence')
   function Twitter(){
   }
 
+  Twitter.getSaved = function(){
+    return $http.get(nodeUrl + '/posts/tweets');
+  };
+
   Twitter.savePost = function(post){
     return $http.post(nodeUrl + '/posts/tweets', post);
   };
@@ -24,10 +28,6 @@ angular.module('convergence')
   Twitter.login = function(){
     return $window.OAuth.popup('twitter', {cache: true});
   };
-
-  // Twitter.login = function(){
-  //   return $http.get('/signin', oauth.auth('twitter', nodeURl + '/twitter/auth'));
-  // };
 
   Twitter.logout = function(){
     return $window.OAuth.logout('twitter');

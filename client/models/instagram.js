@@ -13,6 +13,10 @@ angular.module('convergence')
     }
   };
 
+  Instagram.getSaved = function(){
+    return $http.get(nodeUrl + '/posts/igposts');
+  };
+
   Instagram.savePost = function(post){
     return $http.post(nodeUrl + '/posts/igposts', post);
   };

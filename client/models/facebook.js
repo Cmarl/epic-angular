@@ -5,6 +5,10 @@ angular.module('convergence')
   function Facebook(){
   }
 
+  Facebook.getSaved = function(){
+    return $http.get(nodeUrl + '/posts/fbposts');
+  };
+
   Facebook.savePost = function(post){
     return $http.post(nodeUrl + '/posts/fbposts', post);
   };

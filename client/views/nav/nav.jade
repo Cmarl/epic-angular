@@ -9,12 +9,11 @@ nav.navbar.navbar-default(ng-controller='NavCtrl')
       a.navbar-brand(href='/') convergence
     #navbar.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-left(ng-show='activeUser')
-        li: a(ui-sref='home'): i.fa.fa.fa-home &nbsp; Home
-        li: a(ui-sref='about'): i.fa.fa.fa-info &nbsp; About
+        li: a(ui-sref='home'): i.fa.fa.fa-home &nbsp; Feed
+        li: a(ui-sref='saved'): i.fa.fa.fa-info &nbsp; Saved
         li: a(ui-sref='dashboard'): i.fa.fa-dashboard &nbsp; Dashboard
       ul.nav.navbar-nav.navbar-right(ng-show='activeUser')
         li: a(ng-click='logout()'): i.fa.fa-sign-out &nbsp; {{displayName}}
       ul.nav.navbar-nav.navbar-left(ng-hide='activeUser')
-        li: a(ui-sref='home'): i.fa.fa.fa-home &nbsp; Home
-        li: a(ui-sref='about'): i.fa.fa.fa-info &nbsp; About
+        li: a(ui-sref='home'): i.fa.fa.fa-home &nbsp; Feed
         li: a(ui-sref='login'): i.fa.fa-key &nbsp; Login
