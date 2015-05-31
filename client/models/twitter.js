@@ -5,6 +5,10 @@ angular.module('convergence')
   function Twitter(){
   }
 
+  Twitter.savePost = function(post){
+    return $http.post(nodeUrl + '/posts/tweets', post);
+  };
+
   Twitter.getPost = function(id){
     return $rootScope.twitterCredentials.get('https://api.twitter.com/1.1/statuses/show.json?id=' + id);
   };

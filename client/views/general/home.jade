@@ -16,7 +16,7 @@
               img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
             .col-xs-6
               h3: em &nbsp; {{post.user.username}}
-          img.img-responsive.postContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}' ng-dblclick='toggleIGLike(post, $index)')
+          img.img-responsive.igPostContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}' ng-dblclick='toggleIGLike(post, $index)')
           i.fa.fa-rocket(ng-if='{{post.tags.find("nofilter") && post.filter !== "normal"}}')
           p(ng-if='post.tags') {{post.tags.join(', ')}}
           //- h5(ng-if='post.created_time') {{post.created_time| date:'MM-dd-yyyy'}}
@@ -85,6 +85,7 @@
             h4(ng-if='post.place') At: {{post.place.name}}
             h4(ng-if='post.story') {{post.story}}
             img.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
+            img.twPostContent.thumbnail.img-responsive(ng-show='post.entities.media[0].media_url' ng-src='{{post.entities.media[0].media_url}}')
             h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
             img.postContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}')
             h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}

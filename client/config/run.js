@@ -7,5 +7,5 @@ angular.module('convergence')
   ezfb.init({
     appId: '650188588414568'
   });
-  $window.OAuth.initialize('zKqkBwHoH-ny8pW6pUPjJfCnJag', 'juhc8Wxt-ZE11s5ajjb9H_O0By0');
+  $window.OAuth.initialize('8t4o_6naCBJuo3MPdKoM1yZTbME', 'OfS3b9XHLmN3XPMs_ZU2cWb5ZbM');
 });

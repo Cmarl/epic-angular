@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('convergence')
-.factory('Instagram', function($rootScope, $window){
+.factory('Instagram', function($rootScope, $window, $http, nodeUrl){
   function Instagram(){
   }
 
@@ -11,6 +11,10 @@ angular.module('convergence')
     }else if(!url){
       return $rootScope.instagramCredentials.get('https://api.instagram.com/v1/users/self/feed');
     }
+  };
+
+  Instagram.savePost = function(post){
+    return $http.post(nodeUrl + '/posts/igposts', post);
   };
 
   Instagram.getPost = function(id){

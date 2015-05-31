@@ -1,9 +1,13 @@
 'use strict';
 
 angular.module('convergence')
-.factory('Facebook', function(ezfb, $rootScope){
+.factory('Facebook', function(ezfb, $rootScope, $http, nodeUrl){
   function Facebook(){
   }
+
+  Facebook.savePost = function(post){
+    return $http.post(nodeUrl + '/posts/fbposts', post);
+  };
 
   Facebook.getPost = function(id){
     return ezfb.api('https://graph.facebook.com/' + id);

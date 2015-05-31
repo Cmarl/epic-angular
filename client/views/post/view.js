@@ -34,4 +34,16 @@ angular.module('convergence')
   };
 
   $scope.getPost($state.params.postId, $state.params.provider);
+
+  $scope.savePost = function(post){
+    console.log(post);
+    post.userId = $rootScope.activeUser.token;
+    if(post.from){
+      Facebook.savePost(post);
+    }else if(post.user.screen_name){
+      Twitter.savePost(post);
+    }else if(post.user.profile_picture){
+      Instagram.savePost(post);
+    }
+  };
 });
