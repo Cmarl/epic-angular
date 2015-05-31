@@ -10,8 +10,8 @@
         img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
         h3(ng-if='post.user.screen_name') &nbsp; {{post.user.screen_name}}
         h3(ng-if='post.user.username') &nbsp; {{post.user.username}}
-
-        h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
+        h3#bigMessage(ng-if='liarLiar') Tagged no-filter but used filter!
+        h5(ng-if='post.from.name') {{post.created_time | date:'MM-dd-yyyy'}}
         h5(ng-if='post.created_at') {{post.created_at | date:'MM-dd-yyyy'}}
 
         h4(ng-if='post.text') {{post.text}}
@@ -25,7 +25,7 @@
         img.showPostImg.thumbnail.img-responsive(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}')
 
         h4(ng-if='post.caption.text') {{post.caption.text}}
-        h5(ng-if='post.likes') Likes: &nbsp;
+        h5(ng-if='post.from.name') Likes: &nbsp;
           span(ng-repeat='person in post.likes.data') {{person.name}} &nbsp;
       .col-md-4.col-xs-12
         h4(ng-if='post.from.name') Comments: {{post.comments.data.length}}

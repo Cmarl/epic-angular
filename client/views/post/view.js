@@ -17,6 +17,9 @@ angular.module('convergence')
         Instagram.getPost(id)
         .then(function(response){
           $scope.post = response.data;
+          if(response.data.filter !== 'normal' && ($scope.post.tags.indexOf('no-filter') !== -1 || $scope.post.tags.indexOf('nofilter') !== -1)){
+            $scope.liarLiar = true;
+          }
           $scope.$apply();
         });
         break;
