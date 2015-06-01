@@ -3,18 +3,36 @@
 
 angular.module('convergence')
 .controller('SavedCtrl', function($rootScope, $state, $scope, Facebook, Twitter, Instagram){
-  $scope.posts = {};
+  $scope.posts = [];
 
   Facebook.getSaved()
-  .then(function(response){
-    console.log(response);
+  .then(function(responseF){
+    responseF.data.results.forEach(function(post){
+      $scope.posts.push(post);
+    });
     Instagram.getSaved()
-    .then(function(response2){
-      console.log(response2);
+    .then(function(responseI){
+      responseI.data.results.forEach(function(post){
+        $scope.posts.push(post);
+      });
       Twitter.getSaved()
-      .then(function(response3){
-        console.log(response3);
+      .then(function(responseT){
+        responseT.data.results.forEach(function(post){
+          $scope.posts.push(post);
+          console.log($scope.posts);
+        });
       });
     });
   });
+
+  $scope.viewPost = function(post){
+    if(post.from){
+      $rootScope.fbPost = post;
+      $state.go('view', {postId: post.object_id ? post.object_id : post.id, provider: 'facebook'});
+    }else if(post.lang){
+      $state.go('view', {postId: post.id_str, provider: 'twitter'});
+    }else if(post.filter){
+      $state.go('view', {postId: post.id, provider: 'instagram'});
+    }
+  };
 });

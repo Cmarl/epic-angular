@@ -1,1 +1,44 @@
 h3.text-center SAVED
+.container
+  .container.post(ng-repeat='post in posts')
+    //- instagram
+    .col-xs-1(ng-if='post.user.profile_picture')
+      h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user')
+    .col-xs-1.col-xs-offset-10(ng-if='post.user.profile_picture')
+      h4: i.fa.fa-eye(ng-click='viewPost(post)')
+    .row(ng-if='post.user.profile_picture')
+      .col-xs-2(ng-if='post.user.profile_picture')
+        img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
+      .col-xs-6(ng-if='post.user.profile_picture')
+        h3: em &nbsp; {{post.user.username}}
+    img.img-responsive.igPostContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}' ng-dblclick='toggleIGLike(post, $index)')
+    i.fa.fa-rocket.fa-spin(ng-if='{{post.tags.find("nofilter") && post.filter !== "normal"}}')
+    p(ng-if='post.tags') {{post.tags.join(', ')}}
+    h4(ng-if='post.caption.text') {{post.caption.text}}
+    //- twitter
+    .col-xs-1(ng-if='post.user.screen_name')
+      h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user')
+    .col-xs-1.col-xs-offset-10(ng-if='post.user.screen_name')
+      h4: i.fa.fa-eye(ng-click='viewPost(post)')
+    .row(ng-if='post.user.screen_name')
+      .col-xs-12.col-md-2(ng-if='post.user.screen_name')
+        img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
+      .col-xs-12.col-md-6(ng-if='post.user.screen_name')
+        h3: em &nbsp; {{post.user.screen_name}}
+    h5(ng-if='post.created_at') {{post.created_at | date:'MM-dd-yyyy'}}
+    img.twPostContent.thumbnail.img-responsive(ng-show='post.entities.media[0].media_url' ng-src='{{post.entities.media[0].media_url}}')
+    h4(ng-if='post.text') {{post.text}}
+    h5(ng-if='post.created_at') Favorites: {{post.favorite_count}}
+    //- facebook
+    .col-xs-1(ng-if='post.from.name')
+      h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name')
+    .col-xs-1.col-xs-offset-10(ng-if='post.from.name')
+      h4: i.fa.fa-eye(ng-click='viewPost(post)')
+    h3(ng-if='post.from.name') {{post.from.name}}
+    h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
+    h4(ng-if='post.message') {{post.message}}
+    h4(ng-if='post.place') At: {{post.place.name}}
+    h4(ng-if='post.story') {{post.story}}
+    img.img-responsive.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
+    h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
+    h4(ng-if='post.comments.data') Comments: {{post.comments.data.length}}
