@@ -5,6 +5,10 @@ angular.module('convergence')
   function Facebook(){
   }
 
+  Facebook.deleteSaved = function(post){
+    return $http.delete(nodeUrl + '/posts/fbposts/' + post._id);
+  };
+
   Facebook.getSaved = function(){
     return $http.get(nodeUrl + '/posts/fbposts');
   };

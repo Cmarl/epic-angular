@@ -2,7 +2,7 @@
 /* eslint camelcase:0 */
 
 angular.module('convergence')
-.controller('SavedCtrl', function($rootScope, $state, $scope, Facebook, Twitter, Instagram){
+.controller('SavedCtrl', function($rootScope, $state, $scope, Facebook, Twitter, Instagram, $window){
   $scope.posts = [];
 
   Facebook.getSaved()
@@ -33,6 +33,32 @@ angular.module('convergence')
       $state.go('view', {postId: post.id_str, provider: 'twitter'});
     }else if(post.filter){
       $state.go('view', {postId: post.id, provider: 'instagram'});
+    }
+  };
+
+  function removeDeleted(post){
+    $window._.remove($scope.posts, function(current){
+      return post._id === current._id;
+    });
+    $scope.$apply();
+  }
+
+  $scope.removeSaved = function(post){
+    if(post.provider === 'Twitter'){
+      Twitter.deleteSaved(post)
+      .then(function(tPost){
+        removeDeleted(tPost);
+      });
+    }else if(post.provider === 'Facebook'){
+      Facebook.deleteSaved(post)
+      .then(function(fPost){
+        removeDeleted(fPost);
+      });
+    }else if(post.provider === 'Instagram'){
+      Instagram.deleteSaved(post)
+      .then(function(iPost){
+        removeDeleted(iPost);
+      });
     }
   };
 });

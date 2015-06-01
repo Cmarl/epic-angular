@@ -5,7 +5,9 @@ h3.text-center SAVED
     .col-xs-1(ng-if='post.user.profile_picture')
       h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user')
     .col-xs-1.col-xs-offset-10(ng-if='post.user.profile_picture')
-      h4: i.fa.fa-eye(ng-click='viewPost(post)')
+      h4: i.fa.fa-eye(ng-click='viewPost(post)') &nbsp;
+      h4 &nbsp;
+        i.fa.fa-times(ng-click='removeSaved(post)')
     .row(ng-if='post.user.profile_picture')
       .col-xs-2(ng-if='post.user.profile_picture')
         img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
@@ -19,7 +21,9 @@ h3.text-center SAVED
     .col-xs-1(ng-if='post.user.screen_name')
       h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user')
     .col-xs-1.col-xs-offset-10(ng-if='post.user.screen_name')
-      h4: i.fa.fa-eye(ng-click='viewPost(post)')
+      h4: i.fa.fa-eye(ng-click='viewPost(post)') &nbsp;
+      h4 &nbsp;
+        i.fa.fa-times(ng-click='removeSaved(post)')
     .row(ng-if='post.user.screen_name')
       .col-xs-12.col-md-2(ng-if='post.user.screen_name')
         img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
@@ -33,7 +37,9 @@ h3.text-center SAVED
     .col-xs-1(ng-if='post.from.name')
       h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name')
     .col-xs-1.col-xs-offset-10(ng-if='post.from.name')
-      h4: i.fa.fa-eye(ng-click='viewPost(post)')
+      h4: i.fa.fa-eye(ng-click='viewPost(post)') &nbsp;
+      h4 &nbsp;
+        i.fa.fa-times(ng-click='removeSaved(post)')
     h3(ng-if='post.from.name') {{post.from.name}}
     h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
     h4(ng-if='post.message') {{post.message}}

@@ -5,6 +5,10 @@ angular.module('convergence')
   function Instagram(){
   }
 
+  Instagram.deleteSaved = function(post){
+    return $http.delete(nodeUrl + '/posts/igposts/' + post._id);
+  };
+
   Instagram.feed = function(url){
     if(url){
       return $rootScope.instagramCredentials.get(url);

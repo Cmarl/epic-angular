@@ -5,6 +5,10 @@ angular.module('convergence')
   function Twitter(){
   }
 
+  Twitter.deleteSaved = function(post){
+    return $http.delete(nodeUrl + '/posts/tweets/' + post._id);
+  };
+
   Twitter.getSaved = function(){
     return $http.get(nodeUrl + '/posts/tweets');
   };
