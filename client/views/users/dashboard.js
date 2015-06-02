@@ -2,7 +2,7 @@
 
 angular.module('convergence')
 .controller('DashCtrl', function($rootScope, $scope, Facebook, Twitter, Instagram){
-
+  Facebook.updateCredentials();
   if($rootScope.twitterCredentials){
     Twitter.login()
     .then(function(routes){
@@ -14,20 +14,20 @@ angular.module('convergence')
     });
   }
 
-  if($rootScope.facebookCredentials){
-    Facebook.userInfo()
-    .then(function(fbResponse){
-      $rootScope.facebookUserInfo = fbResponse;
-      Facebook.friendList()
-      .then(function(list){
-        $rootScope.facebookUserInfo.friendList = list;
-        Facebook.photo()
-        .then(function(photo){
-          $rootScope.facebookPhoto = photo.data.url;
-        });
+  Facebook.userInfo()
+  .then(function(fbResponse){
+    $rootScope.facebookUserInfo = fbResponse;
+    $scope.$apply();
+    Facebook.friendList()
+    .then(function(list){
+      $rootScope.facebookUserInfo.friendList = list;
+      Facebook.photo()
+      .then(function(photo){
+        $rootScope.facebookPhoto = photo.data.url;
+        $scope.$apply();
       });
     });
-  }
+  });
 
   if(!$rootScope.instagramCredentials){
     Instagram.login()
@@ -53,9 +53,6 @@ angular.module('convergence')
           $scope.$apply();
         });
         break;
-      case 'Pinterest':
-        console.log('Pinterest');
-        break;
       case 'Instagram':
         Instagram.login()
         .then(function(response){
@@ -78,18 +75,12 @@ angular.module('convergence')
           Facebook.status();
         });
         break;
-
       case 'Twitter':
         Twitter.logout()
         .then(function(){
           Twitter.status();
         });
         break;
-
-      case 'Pinterest':
-        console.log('Pinterest');
-        break;
-
       case 'Instagram':
         console.log('Instagram');
         break;

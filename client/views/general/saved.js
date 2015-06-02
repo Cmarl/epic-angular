@@ -2,7 +2,7 @@
 /* eslint camelcase:0 */
 
 angular.module('convergence')
-.controller('SavedCtrl', function($rootScope, $state, $scope, Facebook, Twitter, Instagram, $window){
+.controller('SavedCtrl', function($rootScope, $state, $scope, Facebook, Twitter, Instagram){
   $scope.posts = [];
 
   Facebook.getSaved()
@@ -37,10 +37,7 @@ angular.module('convergence')
   };
 
   function removeDeleted(post){
-    $window._.remove($scope.posts, function(current){
-      return post._id === current._id;
-    });
-    $scope.$apply();
+    delete $scope.posts[post];
   }
 
   $scope.removeSaved = function(post){

@@ -10,7 +10,7 @@ angular.module('convergence')
         if(fFeed){
           $scope.fbFeed = fFeed.data;
           $scope.fbPaging = fFeed.paging;
-          $scope.$apply();
+          // $scope.$apply();
         }
       });
     }
@@ -37,7 +37,7 @@ angular.module('convergence')
       .then(function(iFeed){
         $scope.igLoading = false;
         $scope.igFeed = iFeed;
-        $scope.$apply();
+        // $scope.$apply();
       });
     }
   };

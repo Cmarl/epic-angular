@@ -17,7 +17,6 @@
             .col-xs-6
               h3: em &nbsp; {{post.user.username}}
           img.img-responsive.igPostContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}' ng-dblclick='toggleIGLike(post, $index)')
-          i.fa.fa-rocket(ng-if='{{post.tags.find("nofilter") && post.filter !== "normal"}}')
           p(ng-if='post.tags') {{post.tags.join(', ')}}
           //- h5(ng-if='post.created_time') {{post.created_time| date:'MM-dd-yyyy'}}
           h4(ng-if='post.caption.text') {{post.caption.text}}
