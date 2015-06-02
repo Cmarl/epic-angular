@@ -47,10 +47,13 @@ angular.module('convergence')
     console.log(post);
     if(post.from){
       Facebook.savePost(post);
+      $state.go('saved');
     }else if(post.user.screen_name){
       Twitter.savePost(post);
+      $state.go('saved');
     }else if(post.user.profile_picture){
       Instagram.savePost(post);
+      $state.go('saved');
     }
   };
 });
