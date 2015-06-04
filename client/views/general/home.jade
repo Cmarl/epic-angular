@@ -23,7 +23,7 @@
           h4#bigMessage(ng-if='checkFilter(post)') #nofilter with filter &nbsp;
             i.fa.fa-fa-gavel.fa-spin
           img.center-block.img-responsive.igPostContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}' ng-dblclick='toggleIGLike(post, $index)')
-          p(ng-if='post.tags') {{post.tags.join(', ')}}
+          p#tags(ng-if='post.tags') {{post.tags.join(', ')}}
           h4(ng-if='post.caption.text') {{post.caption.text}}
           h5(ng-if='post.user_has_liked'): i.fa.fa-heart &nbsp; {{post.likes.count}}
           h5(ng-hide='post.user_has_liked'): i.fa.fa-heart-o &nbsp; {{post.likes.count}}
@@ -79,7 +79,6 @@
             img.center-block.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
             img.center-block.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
           .col-xs-8
-            h3(ng-if='post.user.screen_name') &nbsp; {{post.user.screen_name}}
             h3(ng-if='post.user.username') &nbsp; {{post.user.username}}
             h5(ng-if='post.from.name') {{post.created_time | date:'MM-dd-yyyy'}}
             h5(ng-if='post.created_at') {{post.created_at | date:'MM-dd-yyyy'}}
