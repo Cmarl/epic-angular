@@ -9,7 +9,6 @@
         h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user') &nbsp; {{post.user.screen_name}}
         h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name') &nbsp; {{post.from.name}}
         h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user') &nbsp; {{post.user.username}}
-        h3(ng-if='post.user.screen_name') &nbsp; {{post.user.screen_name}}
         //- h3(ng-if='post.user.username') &nbsp; {{post.user.username}}
         h3#bigMessage(ng-if='liarLiar') Tagged no-filter but used filter!
         h5(ng-if='post.from.name') {{post.created_time | date:'MM-dd-yyyy'}}
