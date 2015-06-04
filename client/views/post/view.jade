@@ -20,7 +20,7 @@
         h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
         h4(ng-if='post.place') At: {{post.place.name}}
         h4(ng-if='post.story') {{post.story}}
-        a(href='{{post.link}}' ng-if='post.link'): img.center-block.postShowImg.thumbnail(ng-show='post.picture' ng-src='{{post.images[0].source}}')
+        a(href='{{post.link}}' ng-if='post.link'): img.center-block.postShowImg.thumbnail.img-responsive(ng-show='post.picture' ng-src='{{post.images[0].source}}')
         img.center-block.showPostImg.thumbnail.img-responsive.text-center(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}')
         img.center-block.twPostContent.thumbnail.img-responsive(ng-show='post.entities.media[0].media_url' ng-src='{{post.entities.media[0].media_url}}')
         h4(ng-if='post.caption.text') {{post.caption.text}}
