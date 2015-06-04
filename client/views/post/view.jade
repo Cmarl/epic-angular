@@ -1,33 +1,31 @@
 .row
-  .col-xs-12
+  .col-md-6.col-md-offset-3.col-xs-12
     .container-fluid.post
-      .col-md-8.col-xs-12
+      .col-xs-1
+        h3: i.fa.fa-star.pointer(ng-click='savePost(post)')
+      .col-md-12.col-xs-12
+        img.center-block.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
+        img.center-block.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
         h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user') &nbsp; {{post.user.screen_name}}
         h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name') &nbsp; {{post.from.name}}
         h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user') &nbsp; {{post.user.username}}
-
-        img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
-        img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
         h3(ng-if='post.user.screen_name') &nbsp; {{post.user.screen_name}}
-        h3(ng-if='post.user.username') &nbsp; {{post.user.username}}
+        //- h3(ng-if='post.user.username') &nbsp; {{post.user.username}}
         h3#bigMessage(ng-if='liarLiar') Tagged no-filter but used filter!
         h5(ng-if='post.from.name') {{post.created_time | date:'MM-dd-yyyy'}}
         h5(ng-if='post.created_at') {{post.created_at | date:'MM-dd-yyyy'}}
-
         h4(ng-if='post.text') {{post.text}}
         h4(ng-if='post.message') {{post.message}}
         h5(ng-if='post.favorite_count') Favorites: {{post.favorite_count}}
         h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
         h4(ng-if='post.place') At: {{post.place.name}}
         h4(ng-if='post.story') {{post.story}}
-
-        a(href='{{post.link}}' ng-if='post.link'): img.postShowImg.thumbnail(ng-show='post.picture' ng-src='{{post.images[0].source}}')
-        img.showPostImg.thumbnail.img-responsive.text-center(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}')
-        img.twPostContent.thumbnail.img-responsive(ng-show='post.entities.media[0].media_url' ng-src='{{post.entities.media[0].media_url}}')
+        a(href='{{post.link}}' ng-if='post.link'): img.center-block.postShowImg.thumbnail(ng-show='post.picture' ng-src='{{post.images[0].source}}')
+        img.center-block.showPostImg.thumbnail.img-responsive.text-center(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}')
+        img.center-block.twPostContent.thumbnail.img-responsive(ng-show='post.entities.media[0].media_url' ng-src='{{post.entities.media[0].media_url}}')
         h4(ng-if='post.caption.text') {{post.caption.text}}
         h5(ng-if='post.from.name') Likes: &nbsp;
           span(ng-repeat='person in post.likes.data') {{person.name}} &nbsp;
-      .col-md-4.col-xs-12
         h4(ng-if='post.from.name') Comments: {{post.comments.data.length}}
         .container(ng-repeat='comment in post.comments.data' ng-if='post.from.name')
           h4 {{comment.from.name}}
@@ -37,8 +35,5 @@
         h4(ng-if='post.filter') Comments: {{post.comments.data.length}}
         .container(ng-repeat='comment in post.comments.data' ng-if='post.user.profile_picture')
           img.thumbnail.postUserImg(ng-if='comment.from.profile_picture' ng-src='{{comment.from.profile_picture}}')
-          h4 From: {{comment.from.username}}
-          h5#commentText {{comment.text}}
-      .row
-        .col-xs-12
-          button.btn.btn-info(ng-click='savePost(post)') Save
+          h4.left From: {{comment.from.username}}
+          h5.left#commentText {{comment.text}}

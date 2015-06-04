@@ -1,10 +1,57 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans);
 body{
-  background-color: #eaeaea;
+  // background-color: #dcdcdc;
+  background: rgba(33,180,226,1);
+  background: -moz-linear-gradient(left, rgba(33,180,226,1) 0%, rgba(183,222,237,1) 49%, rgba(183,219,232,1) 55%, rgba(57,198,245,1) 85%, rgba(57,198,245,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(33,180,226,1)), color-stop(49%, rgba(183,222,237,1)), color-stop(55%, rgba(183,219,232,1)), color-stop(85%, rgba(57,198,245,1)), color-stop(100%, rgba(57,198,245,1)));
+  background: -webkit-linear-gradient(left, rgba(33,180,226,1) 0%, rgba(183,222,237,1) 49%, rgba(183,219,232,1) 55%, rgba(57,198,245,1) 85%, rgba(57,198,245,1) 100%);
+  background: -o-linear-gradient(left, rgba(33,180,226,1) 0%, rgba(183,222,237,1) 49%, rgba(183,219,232,1) 55%, rgba(57,198,245,1) 85%, rgba(57,198,245,1) 100%);
+  background: -ms-linear-gradient(left, rgba(33,180,226,1) 0%, rgba(183,222,237,1) 49%, rgba(183,219,232,1) 55%, rgba(57,198,245,1) 85%, rgba(57,198,245,1) 100%);
+  background: linear-gradient(to right, rgba(33,180,226,1) 0%, rgba(183,222,237,1) 49%, rgba(183,219,232,1) 55%, rgba(57,198,245,1) 85%, rgba(57,198,245,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#21b4e2', endColorstr='#39c6f5', GradientType=1 );
+}
+
+*{
+  padding: 0px;
+  margin: 0px;
+}
+
+#start{
+  margin-top: 35vh;
+  margin-bottom: 52vh;
+  border-radius: 30px;
+  padding-bottom: 40px;
+  font-family: 'PT Sans', sans-serif;
 }
 
 .comment{
   max-width: 250px;
   margin: 1px;
+}
+
+.left{
+  text-align: left;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.meImg{
+  width: 150;
+  height: 210px;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+#aboutCard{
+  width: 100%;
+  background-color: #f3f3f3;
+  color: #097aa7;
+  -webkit-box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+  box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+  border-radius: 5px;
+  margin: 5px;
 }
 
 .commentArea{
@@ -35,30 +82,35 @@ body{
 }
 
 .post{
-  background-color: #121212;
-  background-size: cover;
-  border-right: 2px solid #6b6b6b;
-  border-bottom: 2px solid #6b6b6b;
-  border-top: 3px solid #aeaeae;
-  border-left: 1px solid #aeaeae;
-  // margin-right: 10px;
-  // margin-top: 10px;
-  border-radius: 5px;
-  border-bottom: 2px solid rgba(47, 47, 47, 0.88);
+  text-align: center;
+  background-color: #f3f3f3;
+  color: #097aa7;
+  -webkit-box-shadow: 6px 3px 7px rgba(0,0,0,0.3);
+  box-shadow: 6px 3px 7px rgba(0,0,0,0.3);
+  border-radius: 10px;
   margin: 5px;
 }
 
+.postSaved{
+  text-align: center;
+  background-color: #f3f3f3;
+  color: #097aa7;
+  -webkit-box-shadow: 6px 3px 7px rgba(0,0,0,0.3);
+  box-shadow: 6px 3px 7px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  margin: 5px;
+  max-width: 100%;
+}
+
 .mixPost{
-  background-color: #121212;
-  background-size: cover;
-  border-right: 2px solid #6b6b6b;
-  border-bottom: 2px solid #6b6b6b;
-  border-top: 3px solid #aeaeae;
-  border-left: 1px solid #aeaeae;
+  text-align: center;
+  background-color: #f3f3f3;
+  color: #097aa7;
+  -webkit-box-shadow: 6px 3px 7px rgba(0,0,0,0.3);
+  box-shadow: 6px 3px 7px rgba(0,0,0,0.3);
   margin-right: 10px;
   margin-top: 10px;
   border-radius: 5px;
-  border-bottom: 2px solid rgba(47, 47, 47, 0.88);
   margin: 5px;
 }
 
@@ -85,11 +137,12 @@ body{
 }
 
 .linkedAcc{
-  border: 3px solid rgba(0, 0, 0, 0.94);
-  background-color: rgb(40, 155, 255);
+  background-color: #f3f3f3;
   border-radius: 5px;
   padding: 5px;
-  color: #cecece;
+  color: #097aa7;
+  -webkit-box-shadow: 6px 3px 7px rgba(0,0,0,0.3);
+  box-shadow: 6px 3px 7px rgba(0,0,0,0.3);
 }
 
 #commentText{

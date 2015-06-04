@@ -19,8 +19,8 @@ angular.module('convergence')
       .then(function(responseT){
         responseT.data.results.forEach(function(post){
           $scope.posts.push(post);
-          console.log($scope.posts);
         });
+        console.log($scope.posts);
       });
     });
   });

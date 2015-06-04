@@ -3,13 +3,13 @@
 angular.module('convergence')
 .controller('DashCtrl', function($rootScope, $scope, Facebook, Twitter, Instagram){
   Facebook.updateCredentials();
+
   if($rootScope.twitterCredentials){
     Twitter.login()
     .then(function(routes){
       routes.me()
       .then(function(user){
         $rootScope.twitterUserInfo = user;
-        $scope.$apply();
       });
     });
   }
@@ -50,7 +50,11 @@ angular.module('convergence')
         Twitter.login()
         .then(function(response){
           $rootScope.twitterCredentials = response;
-          $scope.$apply();
+          response.me()
+          .then(function(user){
+            $rootScope.twitterUserInfo = user;
+            $scope.$apply();
+          });
         });
         break;
       case 'Instagram':

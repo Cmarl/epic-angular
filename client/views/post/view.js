@@ -3,7 +3,7 @@
 angular.module('convergence')
 .controller('ViewCtrl', function($rootScope, $scope, $state, Facebook, Twitter, Instagram){
   function checkFilter(post){
-    if(post.filter !== 'normal' && (post.tags.indexOf('no-filter') !== -1 || post.tags.indexOf('nofilter') !== -1)){
+    if(post.filter !== 'Normal' && (post.tags.indexOf('no-filter') !== -1 || post.tags.indexOf('nofilter') !== -1)){
       return true;
     }
     return false;
@@ -39,7 +39,6 @@ angular.module('convergence')
         break;
     }
   };
-
 
   $scope.getPost($state.params.postId, $state.params.provider);
 

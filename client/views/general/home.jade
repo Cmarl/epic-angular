@@ -1,67 +1,72 @@
+.container-fluid#splash(ng-if='!activeUser')
+  .row
+    .col-xs-6.col-xs-offset-3.col-md-4.col-md-offset-4
+      button.btn.btn-info.form-control.center-block.btn-lg#start(ui-sref='login'): em Get Started
 .container-fluid(ng-if='activeUser')
   .row
     .col-xs-4.col-xs-offset-4#feedHeader
-      button.feedToggle.btn.btn-lg.form-control.btn-warning(ng-click='toggleFeedView()' ng-show='splitFeed') Mix Feeds
-      button.feedToggle.btn.btn-lg.form-control.btn-(ng-click='toggleFeedView()' ng-show='mixedFeed') Split Feed
+      button.feedToggle.btn.btn-lg.form-control.btn-success(ng-click='toggleFeedView()' ng-show='splitFeed') Mix Feeds
+      button.feedToggle.btn.btn-lg.form-control.btn-success(ng-click='toggleFeedView()' ng-show='mixedFeed') Split Feed
   .container-fluid.feed(ng-if='splitFeed')
     .row
-      .col-xs-4
+      .col-md-4.col-xs-12
         .container-fluid.post(ng-repeat='post in igFeed.data track by $index')
           .col-xs-1
             h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user')
           .col-xs-1.col-xs-offset-10
-            h4: i.fa.fa-eye(ng-click='viewPost(post)')
+            h4: i.fa.fa-eye.pointer(ng-click='viewPost(post)')
           .row
             .col-xs-3
               img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
             .col-xs-6
               h3: em &nbsp; {{post.user.username}}
-          img.img-responsive.igPostContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}' ng-dblclick='toggleIGLike(post, $index)')
+          h4#bigMessage(ng-if='checkFilter(post)') #nofilter with filter &nbsp;
+            i.fa.fa-fa-gavel.fa-spin
+          img.center-block.img-responsive.igPostContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}' ng-dblclick='toggleIGLike(post, $index)')
           p(ng-if='post.tags') {{post.tags.join(', ')}}
-          //- h5(ng-if='post.created_time') {{post.created_time| date:'MM-dd-yyyy'}}
           h4(ng-if='post.caption.text') {{post.caption.text}}
           h5(ng-if='post.user_has_liked'): i.fa.fa-heart &nbsp; {{post.likes.count}}
           h5(ng-hide='post.user_has_liked'): i.fa.fa-heart-o &nbsp; {{post.likes.count}}
         button.btn.btn-success.form-control(ng-click='instagramNextPosts()') More &nbsp;
           i.fa.fa-spinner.fa-spin(ng-show='igLoading')
-      .col-xs-4
+      .col-md-4.col-xs-12
         .container-fluid.post(ng-repeat='post in twFeed')
           .col-xs-1
             h4(ng-if='post.user.screen_name'): i.fa.fa-twitter.fa-lg(ng-if='post.user')
           .col-xs-1.col-xs-offset-10
-            h4: i.fa.fa-eye(ng-click='viewPost(post)')
+            h4: i.fa.fa-eye.pointer(ng-click='viewPost(post)')
           .row
             .col-xs-12.col-md-2
               img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
             .col-xs-12.col-md-6
               h3: em &nbsp; {{post.user.screen_name}}
           h5(ng-if='post.created_at') {{post.created_at | date:'MM-dd-yyyy'}}
-          img.twPostContent.thumbnail.img-responsive(ng-show='post.entities.media[0].media_url' ng-src='{{post.entities.media[0].media_url}}')
+          img.center-block.twPostContent.thumbnail.img-responsive(ng-show='post.entities.media[0].media_url' ng-src='{{post.entities.media[0].media_url}}')
           h4(ng-if='post.text') {{post.text}}
           h5(ng-if='post.created_at') Favorites: {{post.favorite_count}}
         button.btn.btn-info.btn-lg.form-control(ng-click='updateTweets()') Refresh Tweets &nbsp;
           i.fa.fa-spinner.fa-spin(ng-show='twLoading')
-      .col-xs-4
+      .col-md-4.col-xs-12
         .container-fluid.post(ng-repeat='post in fbFeed')
           .row
             .col-xs-12
               .col-xs-1
                 h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name')
               .col-xs-1.col-xs-offset-10
-                h4: i.fa.fa-eye(ng-click='viewPost(post)')
+                h4: i.fa.fa-eye.pointer(ng-click='viewPost(post)')
               h3 {{post.from.name}}
               h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
               h4(ng-if='post.message') {{post.message}}
               h4(ng-if='post.place') At: {{post.place.name}}
               h4(ng-if='post.story') {{post.story}}
-              img.img-responsive.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
+              img.center-block.img-responsive.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
               h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
               h4(ng-if='post.comments.data') Comments: {{post.comments.data.length}}
         button.btn.btn-success.form-control(ng-click='facebookNextPosts()') More &nbsp;
           i.fa.fa-spinner.fa-spin(ng-show='fbLoading')
   .container.feed(ng-if='mixedFeed')
     .row
-      .col-xs-10.col-xs-offset-1
+      .col-md-10.col-md-offset-1.col-xs-12
         .container-fluid.mixPost(ng-repeat='post in mixFeed')
           .col-xs-12
             .col-xs-4
@@ -69,10 +74,10 @@
               h4(ng-if='post.from.name'): i.fa.fa-facebook.fa-lg(ng-if='post.from.name') &nbsp; {{post.from.name}}
               h4(ng-if='post.user.profile_picture'): i.fa.fa-instagram.fa-lg(ng-if='post.user') &nbsp; {{post.user.username}}
             .col-xs-1.col-xs-offset-7
-              h4: i.fa.fa-eye(ng-click='viewPost(post)')
+              h4: i.fa.fa-eye.pointer(ng-click='viewPost(post)')
           .col-xs-2
-            img.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
-            img.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
+            img.center-block.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
+            img.center-block.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
           .col-xs-8
             h3(ng-if='post.user.screen_name') &nbsp; {{post.user.screen_name}}
             h3(ng-if='post.user.username') &nbsp; {{post.user.username}}
@@ -83,11 +88,11 @@
             h4(ng-if='post.message') {{post.message}}
             h4(ng-if='post.place') At: {{post.place.name}}
             h4(ng-if='post.story') {{post.story}}
-            img.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
-            img.twPostContent.thumbnail.img-responsive(ng-show='post.entities.media[0].media_url' ng-src='{{post.entities.media[0].media_url}}')
+            img.center-block.postContent.thumbnail(ng-show='post.picture' ng-src='{{post.picture}}')
+            img.center-block.twPostContent.thumbnail.img-responsive(ng-show='post.entities.media[0].media_url' ng-src='{{post.entities.media[0].media_url}}')
             h4(ng-if='post.likes.data.length') Likes: {{post.likes.data.length}}
-            img.postContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}')
-            h5(ng-if='post.created_time') {{post.created_time | date:'MM-dd-yyyy'}}
+            img.center-block.postContent.thumbnail(ng-show='post.images.standard_resolution' ng-src='{{post.images.standard_resolution.url}}')
+            h5(ng-if='post.from.name') {{post.created_time | date:'MM-dd-yyyy'}}
             h4(ng-if='post.caption.text') {{post.caption.text}}
-            h5(ng-if='post.likes'): i.fa.fa-heart &nbsp; {{post.likes.count}}
+            h5(ng-if='post.from.name'): i.fa.fa-heart &nbsp; {{post.likes.count}}
             h4(ng-if='post.comments.data') Comments: {{post.comments.data.length}}

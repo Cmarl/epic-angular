@@ -3,6 +3,13 @@
 
 angular.module('convergence')
 .controller('HomeCtrl', function($rootScope, $state, $scope, Facebook, Twitter, Instagram){
+  $scope.checkFilter = function(post){
+    if(post.filter !== 'Normal' && (post.tags.indexOf('no-filter') !== -1 || post.tags.indexOf('nofilter') !== -1)){
+      return true;
+    }
+    return false;
+  };
+
   $scope.facebookLoadFeed = function(){
     if($scope.facebookCredentials){
       Facebook.feed()
@@ -43,11 +50,13 @@ angular.module('convergence')
   };
 
   $scope.init = function(){
-    $scope.facebookLoadFeed();
-    $scope.twitterLoadFeed();
-    $scope.instagramLoadFeed();
-    $scope.splitFeed = false;
-    $scope.splitFeed = true;
+    if($rootScope.activeUser){
+      $scope.facebookLoadFeed();
+      $scope.twitterLoadFeed();
+      $scope.instagramLoadFeed();
+      $scope.splitFeed = false;
+      $scope.splitFeed = true;
+    }
   };
   $scope.init();
 
