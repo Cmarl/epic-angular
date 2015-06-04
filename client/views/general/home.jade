@@ -79,7 +79,6 @@
             img.center-block.postUserImg.thumbnail(ng-if='post.user.profile_image_url' ng-src='{{post.user.profile_image_url}}')
             img.center-block.postUserImg.thumbnail(ng-if='post.user.profile_picture' ng-src='{{post.user.profile_picture}}')
           .col-xs-8
-            h3(ng-if='post.user.username') &nbsp; {{post.user.username}}
             h5(ng-if='post.from.name') {{post.created_time | date:'MM-dd-yyyy'}}
             h5(ng-if='post.created_at') {{post.created_at | date:'MM-dd-yyyy'}}
             h4(ng-if='post.text') {{post.text}}
